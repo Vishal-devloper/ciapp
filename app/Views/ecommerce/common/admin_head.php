@@ -10,9 +10,9 @@
     <title>Ample Admin Lite Template by WrapPixel</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/plugins/images/favicon.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/admin/plugins/images/favicon.png') ?>">
     <!-- Custom CSS -->
-    <link href="<?= base_url('public/plugins/bower_components/chartist/dist/chartist.min.css') ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('public/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') ?>">
+    <link href="<?= base_url('public/admin/plugins/bower_components/chartist/dist/chartist.min.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('public/admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') ?>">
     <!-- Custom CSS -->
-    <link href="<?= base_url('public/css/style.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('public/admin/css/style.min.css') ?>" rel="stylesheet">

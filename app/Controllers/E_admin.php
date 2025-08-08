@@ -1,42 +1,56 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Models\E_admin_model;
 class E_admin extends BaseController
 {
+     protected $productModel;
+
+    public function __construct()
+    {
+        $this->productModel = new E_admin_model();
+        helper(['form', 'url']);
+    }
+    public function login():string
+    {
+        return view('ecommerce/admin/user/login');
+    }
+    public function register():string
+    {
+        return view('ecommerce/admin/user/register');
+    }
     public function dashboard(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/dashboard');
+        
+        return view('ecommerce/admin/dashboard/dashboard');
     }
     public function profile(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/profile');
+        return view('ecommerce/admin/dashboard/profile');
     }
     public function map_google(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/map_google');
+        return view('ecommerce/admin/dashboard/map_google');
     }
     public function error(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/error');
+        return view('ecommerce/admin/dashboard/error');
     }
     public function basic_table(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/basic_table');
+        return view('ecommerce/admin/dashboard/basic_table');
     }
     public function fontawesome(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/fontawesome');
+        return view('ecommerce/admin/dashboard/fontawesome');
     }
     public function blank(): string
     {   
-        helper('url');
-        return view('ecommerce/admin/blank');
+        return view('ecommerce/admin/dashboard/blank');
+    }
+    public function sample(): string
+    {   
+        $data['products'] = $this->productModel->findAll();
+        return view('ecommerce/admin/dashboard/sample',$data);
     }
 }
