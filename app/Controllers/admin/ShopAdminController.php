@@ -1,14 +1,17 @@
 <?php
+namespace App\Controllers\admin;  
 
-namespace App\Controllers;
-use App\Models\E_admin_model;
-class E_admin extends BaseController
+use App\Controllers\BaseController;
+// use App\Models\admin\ShopAdminModel; 
+
+class ShopAdminController extends BaseController
 {
-     protected $productModel;
+    // protected $ShopAdminModel;
+
 
     public function __construct()
     {
-        $this->productModel = new E_admin_model();
+        // $this->ShopAdminModel = new ShopAdminModel();
         helper(['form', 'url']);
     }
     public function login():string
@@ -48,9 +51,10 @@ class E_admin extends BaseController
     {   
         return view('ecommerce/admin/dashboard/blank');
     }
-    public function sample(): string
-    {   
-        $data['products'] = $this->productModel->findAll();
-        return view('ecommerce/admin/dashboard/sample',$data);
-    }
+    // public function sample(): string
+    // {   
+    //     $data['products'] = $this->ShopAdminModel->findAll();
+    //     return view('ecommerce/admin/dashboard/sample',$data);
+    // }
+    
 }

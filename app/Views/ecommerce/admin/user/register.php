@@ -4,25 +4,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Register</title>
   <link rel="stylesheet" href="<?php echo base_url('public/admin/css/user.css') ?>">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div class="wrapper">
-    <form action="<?php echo base_url('admin/register') ?>" method="post">
+    <form  id="registerForm" action="<?= site_url('admin/User/ajaxRegister') ?>" method="post">
+      <?= csrf_field() ?>
       <h2>Register</h2>
       <div class="input-field">
-        <input type="text" name="signup_name" required>
+        <input type="text" name="username" required>
         <label>Enter your name</label>
       </div>
         <div class="input-field">
-        <input type="email" name="signup_email" required>
+        <input type="email" name="email" required>
         <label>Enter your email</label>
       </div>
       <div class="input-field">
-        <input type="password" name="signup_password" required class="signup_password">
+        <input type="password" name="password" required class="signupPassword">
         <label>Enter your password</label>
       </div>
       <div class="input-field">
-        <input type="password" name="signup_confirm" required class="signup_confirm">
+        <input type="password" name="signupConfirm" required class="signupConfirm">
         <label>Confirm password</label>
       </div>
     
@@ -34,6 +36,10 @@
       </div>
     </form>
   </div>
+  <script>
+    const ajaxRequestUrl ="<?= site_url('public/admin/User/ajaxRegister') ?>";
+  </script>
   <script src="<?= base_url('public/admin/js/register.js') ?>"></script>
+  <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>
 </body>
 </html>

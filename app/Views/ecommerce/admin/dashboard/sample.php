@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Products List</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Product List</h1>
+
+    <?php if (!empty($products) && is_array($products)): ?>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            <?php foreach ($products as $product): ?>
+                <tr>
+                    <td><?= esc($product['id']) ?></td>
+                    <td><?= esc($product['name']) ?></td>
+                    <td><?= esc($product['phone']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        <p>No products found.</p>
+    <?php endif; ?>
 </body>
 </html>
