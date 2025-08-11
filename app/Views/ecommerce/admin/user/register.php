@@ -20,11 +20,11 @@
         <label>Enter your email</label>
       </div>
       <div class="input-field">
-        <input type="password" name="password" required class="signupPassword">
+        <input type="password" name="password" required class="signupPassword" autocomplete="">
         <label>Enter your password</label>
       </div>
       <div class="input-field">
-        <input type="password" name="signupConfirm" required class="signupConfirm">
+        <input type="password" name="signupConfirm" required class="signupConfirm" autocomplete="">
         <label>Confirm password</label>
       </div>
     

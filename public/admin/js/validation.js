@@ -26,16 +26,50 @@ $('#registerForm').on('submit',function(e){
         dataType:"JSON",
         success:function(response){
             if(response.status==='success'){
+
                 alert("User Registration Successful");
+                window.location.href = response.redirect;
             }
             else{
-                alert('Error'+response.message);
+                alert('Error : '+response.message);
             }
         },
         error:function(xhr,error){
             console.debug(xhr);
             console.debug(error);
-            console.log("Error in admin register");
+            console.log("Error in admin register ajax");
+        }
+    });
+});
+
+$('#loginForm').on("submit",function(e){
+    e.preventDefault();
+    let password = $('.loginPassword').val().trim();
+
+    let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
+    
+    if (!passwordPattern.test(password)) {
+        alert('Password must be at least 7 characters, include 1 uppercase letter and 1 special character.');
+        return;
+    }
+
+    $.ajax({
+        url:ajaxRequestUrlLogin,
+        data:$(this).serialize(),
+        method:"post",
+        dataType:"json",
+        success:function(response){
+            if(response.status==='success'){
+                window.location.href = response.redirect;
+            }
+            else{
+                alert("Error : "+response.message);
+            }
+        },
+        error:function(xhr,error){
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in admin login ajax");
         }
     });
 });

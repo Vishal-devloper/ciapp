@@ -14,6 +14,7 @@ class ShopAdminController extends BaseController
         // $this->ShopAdminModel = new ShopAdminModel();
         helper(['form', 'url']);
     }
+    
     public function login():string
     {
         return view('ecommerce/admin/user/login');
