@@ -11,7 +11,7 @@
   <div class="wrapper">
     <form id="loginForm" action="<?php echo site_url('public/admin/User/ajaxLogin') ?>" method="post">
       <?= csrf_field() ?>
-      <h2>Login</h2>
+      <h2>Admin Login</h2>
         <div class="input-field">
         <input type="text" name="email" required>
         <label>Enter your email</label>

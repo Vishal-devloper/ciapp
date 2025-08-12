@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+// Admin 
 $routes->get('/admin/dashboard', 'admin\ShopAdminController::dashboard', ['filter' => 'auth']);
 $routes->get('/admin/profile', 'admin\ShopAdminController::profile', ['filter' => 'auth']);
 $routes->get('/admin/error', 'admin\ShopAdminController::error', ['filter' => 'auth']);
@@ -17,4 +18,17 @@ $routes->get('/admin/login','admin\ShopAdminController::login');
 $routes->get('/admin/register','admin\ShopAdminController::register');
 $routes->post('admin/User/ajaxRegister', 'admin\User::ajaxRegister');
 $routes->post('admin/User/ajaxLogin', 'admin\User::ajaxLogin');
-// $routes->get('/admin/sample','admin/ShopAdminController::sample');
+
+// Vendor
+$routes->get('/vendor/dashboard', 'vendor\ShopVendorController::dashboard', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/profile', 'vendor\ShopVendorController::profile', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/error', 'vendor\ShopVendorController::error', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/basic_table', 'vendor\ShopVendorController::basic_table', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/blank', 'vendor\ShopVendorController::blank', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/fontawesome', 'vendor\ShopVendorController::fontawesome', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/map_google', 'vendor\ShopVendorController::map_google', ['filter' => 'vendorAuth']);
+$routes->get('/vendor/login','vendor\ShopVendorController::login');
+$routes->get('/vendor/verify','vendor\ShopVendorController::verify');
+$routes->get('/vendor/register','vendor\ShopVendorController::register');
+$routes->post('vendor/User/ajaxRegister', 'vendor\User::ajaxRegister');
+$routes->post('vendor/User/ajaxLogin', 'vendor\User::ajaxLogin');

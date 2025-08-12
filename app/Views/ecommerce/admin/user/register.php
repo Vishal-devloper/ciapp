@@ -10,7 +10,7 @@
   <div class="wrapper">
     <form  id="registerForm" action="<?= site_url('admin/User/ajaxRegister') ?>" method="post">
       <?= csrf_field() ?>
-      <h2>Register</h2>
+      <h2>Admin Register</h2>
       <div class="input-field">
         <input type="text" name="username" required>
         <label>Enter your name</label>
