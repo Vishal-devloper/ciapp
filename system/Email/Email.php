@@ -2081,6 +2081,11 @@ class Email
         $result = null;
 
         for ($written = $timestamp = 0, $length = static::strlen($data); $written < $length; $written += $result) {
+            if (!is_resource($this->SMTPConnect)) {
+                $this->setErrorMessage('SMTP connection is not a valid resource.');
+                return false;
+            }
+
             if (($result = fwrite($this->SMTPConnect, static::substr($data, $written))) === false) {
                 break;
             }
@@ -2227,13 +2232,13 @@ class Email
 
     public function __destruct()
     {
-        if ($this->SMTPConnect !== null) {
+        if ($this->SMTPConnect !== null && is_resource($this->SMTPConnect)) {
             try {
                 $this->sendCommand('quit');
             } catch (ErrorException $e) {
                 $protocol = $this->getProtocol();
-                $method   = 'sendWith' . ucfirst($protocol);
-                log_message('error', 'Email: ' . $method . ' throwed ' . $e);
+                $method = 'sendWith' . ucfirst($protocol);
+                log_message('error', 'Email: ' . $method . ' threw ' . $e);
             }
         }
     }

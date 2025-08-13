@@ -30,5 +30,5 @@ $routes->get('/vendor/map_google', 'vendor\ShopVendorController::map_google', ['
 $routes->get('/vendor/login','vendor\ShopVendorController::login');
 $routes->get('/vendor/verify','vendor\ShopVendorController::verify');
 $routes->get('/vendor/register','vendor\ShopVendorController::register');
-$routes->post('vendor/User/ajaxRegister', 'vendor\User::ajaxRegister');
-$routes->post('vendor/User/ajaxLogin', 'vendor\User::ajaxLogin');
+$routes->post('vendor/UserVendor/ajaxRegister', 'vendor\UserVendor::ajaxRegister');
+$routes->post('vendor/UserVendor/ajaxLogin', 'vendor\UserVendor::ajaxLogin');

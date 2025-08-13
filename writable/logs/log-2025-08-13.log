@@ -1,0 +1,172 @@
+CRITICAL - 2025-08-13 11:29:26 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:34:36 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:36:17 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:36:49 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:36:56 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:52:27 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:55:21 --> ErrorException: Undefined variable $redirectUrl
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in APPPATH\Controllers\vendor\UserVendor.php on line 72.
+ 1 APPPATH\Controllers\vendor\UserVendor.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $redirectUrl', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\UserVendor.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\UserVendor->ajaxRegister()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\UserVendor))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-13 11:55:55 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:58:40 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 11:59:04 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:12:26 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:14:14 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:14:41 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:15:22 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:17:00 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:17:22 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:18:34 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:19:54 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()
+CRITICAL - 2025-08-13 12:21:00 --> TypeError: fwrite(): supplied resource is not a valid stream resource
+[Method: POST, Route: vendor/UserVendor/ajaxRegister]
+in SYSTEMPATH\Email\Email.php on line 2084.
+ 1 SYSTEMPATH\Email\Email.php(2084): fwrite(NULL, 'QUIT
+')
+ 2 SYSTEMPATH\Email\Email.php(1993): CodeIgniter\Email\Email->sendData('QUIT
+')
+ 3 SYSTEMPATH\Email\Email.php(2232): CodeIgniter\Email\Email->sendCommand('quit')
+ 4 [internal function]: CodeIgniter\Email\Email->__destruct()

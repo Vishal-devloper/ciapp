@@ -26,9 +26,8 @@ $('#registerForm').on('submit',function(e){
         dataType:"JSON",
         success:function(response){
             if(response.status==='success'){
-
-                alert("User Registration Successful");
-                window.location.href = response.redirect;
+                console.log(response);
+                // window.location.href = response.redirect;
             }
             else{
                 alert('Error : '+response.message);
@@ -37,7 +36,7 @@ $('#registerForm').on('submit',function(e){
         error:function(xhr,error){
             console.debug(xhr);
             console.debug(error);
-            console.log("Error in admin register ajax");
+            console.log("Error in vendor register ajax");
         }
     });
 });
@@ -69,7 +68,7 @@ $('#loginForm').on("submit",function(e){
         error:function(xhr,error){
             console.debug(xhr);
             console.debug(error);
-            console.log("Error in admin login ajax");
+            console.log("Error in vendor login ajax");
         }
     });
 });
