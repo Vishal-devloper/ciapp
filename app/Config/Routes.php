@@ -32,3 +32,4 @@ $routes->get('/vendor/verify','vendor\ShopVendorController::verify');
 $routes->get('/vendor/register','vendor\ShopVendorController::register');
 $routes->post('vendor/UserVendor/ajaxRegister', 'vendor\UserVendor::ajaxRegister');
 $routes->post('vendor/UserVendor/ajaxLogin', 'vendor\UserVendor::ajaxLogin');
+$routes->post('vendor/UserVendor/ajaxCodeVerify', 'vendor\UserVendor::ajaxCodeVerify');

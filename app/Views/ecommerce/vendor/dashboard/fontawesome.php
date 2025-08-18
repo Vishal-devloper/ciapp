@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
 
 <head>
-    <?= view('ecommerce/common/admin_head') ?>
+    <?= view('ecommerce/vendor/common/vendor_head') ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,7 +104,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <?= view('ecommerce/common/admin_navbar') ?>
+        <?= view('ecommerce/vendor/common/vendor_navbar') ?>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -2703,7 +2703,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <?= view('ecommerce/common/admin_foot') ?>
+    <?= view('ecommerce/vendor/common/vendor_foot') ?>
 </body>
 
 </html>

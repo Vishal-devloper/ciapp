@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
 
 <head>
-    <?= view('ecommerce/common/admin_head') ?>
+    <?= view('ecommerce/vendor/common/vendor_head') ?>
 </head>
 
 <body>
@@ -93,7 +93,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <?= view('ecommerce/common/admin_navbar') ?>
+        <?= view('ecommerce/vendor/common/vendor_navbar') ?>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -479,7 +479,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <?= view('ecommerce/common/admin_foot') ?>
+    <?= view('ecommerce/vendor/common/vendor_foot') ?>
 </body>
 
 </html>
