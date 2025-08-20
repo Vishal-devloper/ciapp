@@ -87,9 +87,9 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                            <a class="profile-pic" href="#">
+                             <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
                                 <img src="<?= base_url('public/plugins/images/users/varun.jpg') ?>" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                                    class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -153,8 +153,8 @@
                                     <div class="user-content">
                                         <a href="javascript:void(0)"><img src="<?= base_url('public/plugins/images/users/genu.jpg') ?>"
                                                 class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white mt-2">User Name</h4>
-                                        <h5 class="text-white mt-2">info@myadmin.com</h5>
+                                        <h4 class="text-white mt-2"><?= esc($user[0]['name']) ?></h4>
+                                        <h5 class="text-white mt-2"><?= esc($user[0]['email']) ?></h5>
                                     </div>
                                 </div>
                             </div>
@@ -181,46 +181,26 @@
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="Johnathan Doe"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" value="<?= esc($user[0]['name']) ?>"> </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="example-email" class="col-md-12 p-0">Email</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="email" placeholder="johnathan@admin.com"
                                                 class="form-control p-0 border-0" name="example-email"
-                                                id="example-email">
+                                                id="example-email" value="<?= esc($user[0]['email']) ?>">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Password</label>
+                                        <label class="col-md-12 p-0">Current Password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" value="password" class="form-control p-0 border-0">
+                                            <input type="password" placeholder="password" class="form-control p-0 border-0">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Phone No</label>
+                                        <label class="col-md-12 p-0">New Password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="text" placeholder="123 456 7890"
-                                                class="form-control p-0 border-0">
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Message</label>
-                                        <div class="col-md-12 border-bottom p-0">
-                                            <textarea rows="5" class="form-control p-0 border-0"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label class="col-sm-12">Select Country</label>
-
-                                        <div class="col-sm-12 border-bottom">
-                                            <select class="form-select shadow-none p-0 border-0 form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
-                                            </select>
+                                            <input type="password" placeholder="password" class="form-control p-0 border-0">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">

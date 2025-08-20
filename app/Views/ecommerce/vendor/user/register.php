@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form  id="registerForm" action="<?= site_url('vendor/UserVendor/ajaxRegister') ?>" method="post">
+    <form  id="registerForm" action="<?= site_url('vendor/User/ajaxRegister') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Vendor Register</h2>
       <div class="input-field">
@@ -45,7 +45,7 @@
     </form>
   </div>
   <script>
-    const ajaxRequestUrl ="<?= site_url('public/vendor/UserVendor/ajaxRegister') ?>";
+    const ajaxRequestUrl ="<?= site_url('public/vendor/User/ajaxRegister') ?>";
   </script>
   <script src="<?= base_url('public/vendor/js/register.js') ?>"></script>
   <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>

@@ -1,5 +1,8 @@
 $('#registerForm').on('submit', function (e) {
     e.preventDefault();
+    let $this = $('#RegisterForm button[type="submit"]');
+        $this.text("Registering...");
+        $this.css("pointer-events", "none"); // disable clicks
     let password = $('.signupPassword').val().trim();
     let confirmPassword = $('.signupConfirm').val().trim();
 
@@ -31,18 +34,25 @@ $('#registerForm').on('submit', function (e) {
             }
             else {
                 alert('Error : ' + response.message);
+                $this.text("Register");
+                $this.css("pointer-events", "auto");
             }
         },
         error: function (xhr, error) {
             console.debug(xhr);
             console.debug(error);
             console.log("Error in vendor register ajax");
+            $this.text("Register");
+                $this.css("pointer-events", "auto");
         }
     });
 });
 
 $('#loginForm').on("submit", function (e) {
     e.preventDefault();
+    let $this = $('#loginForm button[type="submit"]');
+        $this.text("Logging In...");
+        $this.css("pointer-events", "none"); // disable clicks
     let password = $('.loginPassword').val().trim();
 
     let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
@@ -63,12 +73,16 @@ $('#loginForm').on("submit", function (e) {
             }
             else {
                 alert("Error : " + response.message);
+                $this.text("Login");
+                $this.css("pointer-events", "auto");
             }
         },
         error: function (xhr, error) {
             console.debug(xhr);
             console.debug(error);
             console.log("Error in vendor login ajax");
+            $this.text("Login");
+                $this.css("pointer-events", "auto");
         }
     });
 });
@@ -78,6 +92,9 @@ $('#loginForm').on("submit", function (e) {
 
 $('#RegisterVerifyForm').on("submit", function (e) {
     e.preventDefault();
+    let $this = $('#RegisterVerifyForm button[type="submit"]');
+        $this.text("Verifying...");
+        $this.css("pointer-events", "none"); // disable clicks
     const urlParams=new URLSearchParams(window.location.search);
     const email=urlParams.get('email');
     let code = $('#code').val().trim();
@@ -107,12 +124,88 @@ $('#RegisterVerifyForm').on("submit", function (e) {
             }
             else {
                 alert("Error : " + response.message);
+                $this.text("Verify");
+                $this.css("pointer-events", "auto");
             }
         },
         error: function (xhr, error) {
             console.debug(xhr);
             console.debug(error);
             console.log("Error in vendor verify ajax");
+            $this.text("Verify");
+                $this.css("pointer-events", "auto");
         }
     });
+});
+// Resend code
+let maxResend = 4;
+let resendCount = 0;
+
+$('.resend').on('click',function(){
+    if (resendCount >= maxResend) {
+        alert("You can only resend the code 4 times.");
+        return;
+    }
+
+    let $this = $('.resend');
+        $this.text('Sending...');
+        $this.css("pointer-events", "none");
+    const urlParams=new URLSearchParams(window.location.search);
+    const email=urlParams.get('email');
+    $.ajax({
+        url: ajaxRequestUrlRegisterVerifyResend,
+        data: {
+            'email':email
+        },
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                $this.text('Sent');
+                resendCount++;
+                alert(response.message + " Remaining: " + (maxResend - resendCount));
+                startResendTimer(60);
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("resend code");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            $this.text("Resend code");
+            $this.css("pointer-events", "auto");
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor verify resend code ajax");
+        }
+    });
+
+    // function to start countdown
+    function startResendTimer(duration) {
+        let timer = duration;
+        let $resend = $(".resend");
+        let $timer = $("#timer");
+
+        $resend.addClass("disabled").css({
+            "pointer-events": "none",
+            "color": "grey"
+        });
+
+        let interval = setInterval(function () {
+            let minutes = Math.floor(timer / 60);
+            let seconds = timer % 60;
+            $timer.text("Wait " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+
+            if (--timer < 0) {
+                clearInterval(interval);
+                $timer.text("");
+                $resend.text('resend code')
+                $resend.removeClass("disabled").css({
+                    "pointer-events": "auto",
+                    "color": "blue",
+                });
+            }
+        }, 1000);
+    }
 });

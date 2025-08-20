@@ -2,22 +2,27 @@
 namespace App\Controllers\admin;  
 
 use App\Controllers\BaseController;
-// use App\Models\admin\ShopAdminModel; 
+use App\Models\admin\UserModel;
+
 
 class ShopAdminController extends BaseController
 {
-    // protected $ShopAdminModel;
-
+    
+    protected $UserModel;
 
     public function __construct()
     {
-        // $this->ShopAdminModel = new ShopAdminModel();
+        $this->UserModel = new UserModel();
         helper(['form', 'url']);
     }
     
     public function login():string
     {
         return view('ecommerce/admin/user/login');
+    }
+    public function verify():string
+    {
+        return view('ecommerce/admin/user/verify');
     }
     public function register():string
     {
@@ -30,7 +35,9 @@ class ShopAdminController extends BaseController
     }
     public function profile(): string
     {   
-        return view('ecommerce/admin/dashboard/profile');
+        $session=session();
+        $data['user']=$this->UserModel->find($session->get('id'));
+        return view('ecommerce/admin/dashboard/profile',$data);
     }
     public function map_google(): string
     {   
@@ -52,10 +59,6 @@ class ShopAdminController extends BaseController
     {   
         return view('ecommerce/admin/dashboard/blank');
     }
-    // public function sample(): string
-    // {   
-    //     $data['products'] = $this->ShopAdminModel->findAll();
-    //     return view('ecommerce/admin/dashboard/sample',$data);
-    // }
+    
     
 }

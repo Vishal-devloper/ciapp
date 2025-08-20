@@ -15,9 +15,12 @@ $routes->get('/admin/blank', 'admin\ShopAdminController::blank', ['filter' => 'a
 $routes->get('/admin/fontawesome', 'admin\ShopAdminController::fontawesome', ['filter' => 'auth']);
 $routes->get('/admin/map_google', 'admin\ShopAdminController::map_google', ['filter' => 'auth']);
 $routes->get('/admin/login','admin\ShopAdminController::login');
+$routes->get('/admin/verify','admin\ShopAdminController::verify');
 $routes->get('/admin/register','admin\ShopAdminController::register');
 $routes->post('admin/User/ajaxRegister', 'admin\User::ajaxRegister');
 $routes->post('admin/User/ajaxLogin', 'admin\User::ajaxLogin');
+$routes->post('admin/User/ajaxCodeVerify', 'admin\User::ajaxCodeVerify');
+$routes->post('admin/User/ajaxCodeVerifyResend', 'admin\User::ajaxCodeVerifyResend');
 
 // Vendor
 $routes->get('/vendor/dashboard', 'vendor\ShopVendorController::dashboard', ['filter' => 'vendorAuth']);
@@ -30,6 +33,7 @@ $routes->get('/vendor/map_google', 'vendor\ShopVendorController::map_google', ['
 $routes->get('/vendor/login','vendor\ShopVendorController::login');
 $routes->get('/vendor/verify','vendor\ShopVendorController::verify');
 $routes->get('/vendor/register','vendor\ShopVendorController::register');
-$routes->post('vendor/UserVendor/ajaxRegister', 'vendor\UserVendor::ajaxRegister');
-$routes->post('vendor/UserVendor/ajaxLogin', 'vendor\UserVendor::ajaxLogin');
-$routes->post('vendor/UserVendor/ajaxCodeVerify', 'vendor\UserVendor::ajaxCodeVerify');
+$routes->post('vendor/User/ajaxRegister', 'vendor\User::ajaxRegister');
+$routes->post('vendor/User/ajaxLogin', 'vendor\User::ajaxLogin');
+$routes->post('vendor/User/ajaxCodeVerify', 'vendor\User::ajaxCodeVerify');
+$routes->post('vendor/User/ajaxCodeVerifyResend', 'vendor\User::ajaxCodeVerifyResend');

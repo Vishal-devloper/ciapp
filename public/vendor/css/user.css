@@ -51,6 +51,11 @@ h2 {
 .register a{
   color: #82cef4 !important;
 }
+#timer{
+  text-align: center;
+  color: red;
+  font-size: 15px;
+}
 .input-field label {
   position: absolute;
   top: 50%;

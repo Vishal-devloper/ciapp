@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form id="RegisterVerifyForm" action="<?php echo site_url('public/vendor/UserVendor/ajaxCodeVerify') ?>" method="post">
+    <form id="RegisterVerifyForm" action="<?php echo site_url('public/vendor/User/ajaxCodeVerify') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Vendor Register</h2>
         <div class="input-field padding-bottom">
@@ -19,12 +19,13 @@
       
       <button type="submit">verify</button>
       <div class="register">
-        <p>Don't get verification code? <a href="<?php echo base_url('public/vendor/register') ?>">resend code</a></p>
+        <p >Don't get verification code? <a href="#" class="resend">resend code</a><br><span id="timer"></span></p>
       </div>
     </form>
   </div>
   <script>
-    const ajaxRequestUrlRegisterVerify ="<?= site_url('public/vendor/UserVendor/ajaxCodeVerify') ?>";
+    const ajaxRequestUrlRegisterVerify ="<?= site_url('public/vendor/User/ajaxCodeVerify') ?>";
+    const ajaxRequestUrlRegisterVerifyResend ="<?= site_url('public/vendor/User/ajaxCodeVerifyResend') ?>";
   </script>
   <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>
 </body>

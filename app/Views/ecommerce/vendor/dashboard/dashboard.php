@@ -29,7 +29,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url('public/admin/dashboard') ?>">
+                    <a class="navbar-brand" href="<?= base_url('public/vendor/dashboard') ?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -76,9 +76,9 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                            <a class="profile-pic" href="#">
+                             <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
                                 <img src="<?= base_url('public/plugins/images/users/varun.jpg') ?>" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                                    class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->

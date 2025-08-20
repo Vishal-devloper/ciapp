@@ -1,0 +1,114 @@
+DEBUG - 2025-08-19 15:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-08-19 16:18:16 --> Email: sendWithSmtp throwed ErrorException: fsockopen(): php_network_getaddresses: getaddrinfo for smtp.gmail.com failed: No such host is known in C:\xampp\htdocs\ciapp\system\Email\Email.php:1905
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'fsockopen(): ph...', 'C:\\xampp\\htdocs...', 1905)
+#1 C:\xampp\htdocs\ciapp\system\Email\Email.php(1905): fsockopen('smtp.gmail.com', 587, NULL, NULL, 10)
+#2 C:\xampp\htdocs\ciapp\system\Email\Email.php(1818): CodeIgniter\Email\Email->SMTPConnect()
+#3 C:\xampp\htdocs\ciapp\system\Email\Email.php(1703): CodeIgniter\Email\Email->sendWithSmtp()
+#4 C:\xampp\htdocs\ciapp\system\Email\Email.php(1597): CodeIgniter\Email\Email->spoolEmail()
+#5 C:\xampp\htdocs\ciapp\app\Controllers\vendor\UserVendor.php(66): CodeIgniter\Email\Email->send()
+#6 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(933): App\Controllers\vendor\UserVendor->ajaxRegister()
+#7 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\UserVendor))
+#8 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ciapp\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ciapp\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ciapp\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-08-19 16:18:16 --> Email: sendWithSmtp throwed ErrorException: fsockopen(): php_network_getaddresses: getaddrinfo for smtp.gmail.com failed: No such host is known in C:\xampp\htdocs\ciapp\system\Email\Email.php:1905
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'fsockopen(): ph...', 'C:\\xampp\\htdocs...', 1905)
+#1 C:\xampp\htdocs\ciapp\system\Email\Email.php(1905): fsockopen('smtp.gmail.com', 587, NULL, NULL, 10)
+#2 C:\xampp\htdocs\ciapp\system\Email\Email.php(1818): CodeIgniter\Email\Email->SMTPConnect()
+#3 C:\xampp\htdocs\ciapp\system\Email\Email.php(1703): CodeIgniter\Email\Email->sendWithSmtp()
+#4 C:\xampp\htdocs\ciapp\system\Email\Email.php(1597): CodeIgniter\Email\Email->spoolEmail()
+#5 C:\xampp\htdocs\ciapp\app\Controllers\vendor\UserVendor.php(66): CodeIgniter\Email\Email->send()
+#6 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(933): App\Controllers\vendor\UserVendor->ajaxRegister()
+#7 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\UserVendor))
+#8 C:\xampp\htdocs\ciapp\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ciapp\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ciapp\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ciapp\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+ERROR - 2025-08-19 16:18:16 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-08-19 16:18:16 --> 
+ERROR - 2025-08-19 16:18:16 --> Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 19 Aug 2025 16:18:07 +0530
+From: &quot;Zem e-commerce&quot; &lt;noreplyzem63@gmail.com&gt;
+Return-Path: &lt;noreplyzem63@gmail.com&gt;
+To: v4516820@gmail.com
+Subject: =?UTF-8?Q?Email=20Verification=20Code?=
+Reply-To: &lt;noreplyzem63@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: noreplyzem63@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;68a45667b58926.75141258@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_68a45667b58bc5.69520047&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_68a45667b58bc5.69520047
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Your verification code is: 267447. It will expire in 15 minutes.
+
+
+--B_ALT_68a45667b58bc5.69520047
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Your verification code is: &lt;b&gt;267447&lt;/b&gt;. It will expire in 15 minutes.
+
+--B_ALT_68a45667b58bc5.69520047--</pre>
+ERROR - 2025-08-19 16:18:16 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-08-19 16:18:16 --> 
+ERROR - 2025-08-19 16:18:16 --> Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Tue, 19 Aug 2025 16:18:04 +0530
+From: &quot;Zem e-commerce&quot; &lt;noreplyzem63@gmail.com&gt;
+Return-Path: &lt;noreplyzem63@gmail.com&gt;
+To: v4516820@gmail.com
+Subject: =?UTF-8?Q?Email=20Verification=20Code?=
+Reply-To: &lt;noreplyzem63@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: noreplyzem63@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;68a45664398140.38498361@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_68a456643982c7.74379098&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_68a456643982c7.74379098
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Your verification code is: 431171. It will expire in 15 minutes.
+
+
+--B_ALT_68a456643982c7.74379098
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Your verification code is: &lt;b&gt;431171&lt;/b&gt;. It will expire in 15 minutes.
+
+--B_ALT_68a456643982c7.74379098--</pre>
+DEBUG - 2025-08-19 17:36:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-19 17:36:41 --> Error: Object of class CodeIgniter\Email\Email could not be converted to string
+[Method: POST, Route: vendor/UserVendor/ajaxCodeVerifyResend]
+in APPPATH\Controllers\vendor\UserVendor.php on line 259.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\UserVendor->ajaxCodeVerifyResend()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\UserVendor))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-08-19 17:37:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-19 17:39:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-19 17:39:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
