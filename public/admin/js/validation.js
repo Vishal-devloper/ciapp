@@ -209,3 +209,52 @@ $('.resend').on('click',function(){
         }, 1000);
     }
 });
+
+// Profile Update
+
+$('#profile').on("submit", function (e) {
+    e.preventDefault();
+    let $this = $('#profile button[type="submit"]');
+        $this.text("Updating Profile...");
+        $this.css("pointer-events", "none"); // disable clicks
+    let password = $('.password').val().trim();
+    let newPassword = $('.newPassword').val().trim();
+
+    let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
+
+    if (!passwordPattern.test(password) || !passwordPattern.test(newPassword)) {
+        alert('Password must be at least 7 characters, include 1 uppercase letter and 1 special character.');
+        $this.text("Update Profile");
+        $this.css("pointer-events", "auto");
+        return;
+    }
+    if(password===newPassword){
+        alert("Password should be different");
+        $this.text("Update Profile");
+        $this.css("pointer-events", "auto");
+        return;
+    }
+    $.ajax({
+        url: ajaxUserUpdateUrl,
+        data: $(this).serialize(),
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                alert(response.message);
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor Update Profile ajax");
+            $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
+        }
+    });
+});

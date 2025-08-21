@@ -12,7 +12,7 @@ class AdminFilter implements FilterInterface
     {
         $session = session();
 
-        if (!$session->get('isLogin')) {
+        if (!$session->get('isAdminLogin')) {
             return redirect()->to(base_url('public/admin/login'));
         }
     }

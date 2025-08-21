@@ -2,16 +2,16 @@
 namespace App\Controllers\vendor;  
 
 use App\Controllers\BaseController;
-// use App\Models\vendor\ShopVendorModel; 
+use App\Models\vendor\UserModel; 
 
 class ShopVendorController extends BaseController
 {
-    // protected $ShopvendorModel;
+    protected $UserModel;
 
 
     public function __construct()
     {
-        // $this->ShopvendorModel = new ShopvendorModel();
+        $this->UserModel = new UserModel();
         helper(['form', 'url']);
     }
     
@@ -34,7 +34,9 @@ class ShopVendorController extends BaseController
     }
     public function profile(): string
     {   
-        return view('ecommerce/vendor/dashboard/profile');
+        $session=session();
+        $data['user']=$this->UserModel->find($session->get('id'));
+        return view('ecommerce/vendor/dashboard/profile',$data);
     }
     public function map_google(): string
     {   
@@ -56,10 +58,6 @@ class ShopVendorController extends BaseController
     {   
         return view('ecommerce/vendor/dashboard/blank');
     }
-    // public function sample(): string
-    // {   
-    //     $data['products'] = $this->ShopvendorModel->findAll();
-    //     return view('ecommerce/vendor/dashboard/sample',$data);
-    // }
+    
     
 }

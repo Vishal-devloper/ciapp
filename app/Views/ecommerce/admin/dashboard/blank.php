@@ -39,13 +39,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="<?= base_url('public/plugins/images/logo-icon.png') ?>" alt="homepage" />
+                            <img src="<?= base_url('public/admin/plugins/images/logo-icon.png') ?>" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="<?= base_url('public/plugins/images/logo-text.png') ?>" alt="homepage" />
+                            <img src="<?= base_url('public/admin/plugins/images/logo-text.png') ?>" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->

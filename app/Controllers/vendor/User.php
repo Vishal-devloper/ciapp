@@ -281,10 +281,11 @@ class User extends BaseController
                 'message' => 'Wrong password.'
             ]);
         }
-
+        $session=session();
+        $session->regenerate(true);
         // Set session
-        session()->set([
-            'userId' => $userData['id'],
+        $session->set([
+            'id' => $userData['id'],
             'name' => $userData['name'],
             'email' => $userData['email'],
             'isVendorLogin' => true
@@ -295,6 +296,43 @@ class User extends BaseController
             'message' => 'Login successful.',
             'redirect' => site_url('public/vendor/dashboard')
         ]);
+    }
+    public function ajaxUserUpdate(){
+        $emailAddr=$this->request->getPost('email');
+        $userData=$this->UserModel->where('email',$emailAddr)->first();
+        if (!$userData) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Email not registered. Please register.'
+            ]);
+        }
+        if(!password_verify($this->request->getPost('password'),$userData['password'])){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Current Password is Wrong.'
+            ]);
+        }
+        $insertId=$this->UserModel->update($userData['id'],
+        [
+            'name'=>$this->request->getPost('name'),
+            'password'=>password_hash($this->request->getPost('newPassword'),PASSWORD_DEFAULT),
+            'phone'=>$this->request->getPost('phone'),
+            'store_name'=>$this->request->getPost('store_name'),
+            'store_logo_id'=>$this->request->getPost('logo'),
+            'address'=>$this->request->getPost('address'),
+            'updated_at'=>date('Y-m-d H:i:s')
+        ]
+    );
+    if(!$insertId){
+        return $this->response->setJSON([
+            'status'=>'error',
+            'message'=>'Profile Not Updated Try Again later'
+        ]);
+    }
+    return $this->response->setJSON([
+        'status'=>'success',
+        'message'=>'Profile Updated Successfully.'
+    ]);
     }
 
 }

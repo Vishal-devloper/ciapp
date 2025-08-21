@@ -21,6 +21,7 @@ $routes->post('admin/User/ajaxRegister', 'admin\User::ajaxRegister');
 $routes->post('admin/User/ajaxLogin', 'admin\User::ajaxLogin');
 $routes->post('admin/User/ajaxCodeVerify', 'admin\User::ajaxCodeVerify');
 $routes->post('admin/User/ajaxCodeVerifyResend', 'admin\User::ajaxCodeVerifyResend');
+$routes->post('admin/User/ajaxUserUpdate', 'admin\User::ajaxUserUpdate');
 
 // Vendor
 $routes->get('/vendor/dashboard', 'vendor\ShopVendorController::dashboard', ['filter' => 'vendorAuth']);
@@ -37,3 +38,5 @@ $routes->post('vendor/User/ajaxRegister', 'vendor\User::ajaxRegister');
 $routes->post('vendor/User/ajaxLogin', 'vendor\User::ajaxLogin');
 $routes->post('vendor/User/ajaxCodeVerify', 'vendor\User::ajaxCodeVerify');
 $routes->post('vendor/User/ajaxCodeVerifyResend', 'vendor\User::ajaxCodeVerifyResend');
+$routes->post('vendor/User/ajaxUserUpdate', 'vendor\User::ajaxUserUpdate');
+

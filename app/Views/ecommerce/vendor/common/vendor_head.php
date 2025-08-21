@@ -16,3 +16,4 @@
     <link rel="stylesheet" href="<?= base_url('public/vendor/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') ?>">
     <!-- Custom CSS -->
     <link href="<?= base_url('public/vendor/css/style.min.css') ?>" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

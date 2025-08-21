@@ -275,10 +275,11 @@ class User extends BaseController
                 'message' => 'Wrong password.'
             ]);
         }
-
+        $session=session();
+        $session->regenerate(true);
         // Set session
-        session()->set([
-            'userId' => $userData['id'],
+        $session->set([
+            'id' => $userData['id'],
             'name' => $userData['name'],
             'email' => $userData['email'],
             'isAdminLogin' => true
@@ -289,6 +290,40 @@ class User extends BaseController
             'message' => 'Login successful.',
             'redirect' => site_url('public/admin/dashboard')
         ]);
+    }
+    
+    // Update Profile
+    public function ajaxUserUpdate(){
+        $emailAddr=$this->request->getPost('email');
+        $userData=$this->UserModel->where('email',$emailAddr)->first();
+        if (!$userData) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Email not registered. Please register.'
+            ]);
+        }
+        if(!password_verify($this->request->getPost('password'),$userData['password'])){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Current Password is Wrong.'
+            ]);
+        }
+        $insertId=$this->UserModel->update($userData['id'],
+        [
+            'name'=>$this->request->getPost('name'),
+            'password'=>password_hash($this->request->getPost('newPassword'),PASSWORD_DEFAULT)
+        ]
+    );
+    if(!$insertId){
+        return $this->response->setJSON([
+            'status'=>'error',
+            'message'=>'Profile Not Updated Try Again later'
+        ]);
+    }
+    return $this->response->setJSON([
+        'status'=>'success',
+        'message'=>'Profile Updated Successfully.'
+    ]);
     }
 
 }
