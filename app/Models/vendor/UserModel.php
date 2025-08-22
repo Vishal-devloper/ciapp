@@ -8,6 +8,6 @@ class UserModel extends Model
     protected $table = 'vendors';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'name', 'email','password','phone',	'store_name',	'store_logo',	'address',	'status',	'created_at','updated_at'
+        'name', 'email','password','phone',	'store_name',	'store_logo_id',	'address',	'status',	'created_at','updated_at'
     ];
 }

@@ -176,7 +176,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material" id="profile" action="<?php echo site_url('public/admin/User/ajaxUserUpdate') ?>" method="post">
+                                <form class="form-horizontal form-material" enctype="multipart/form-data" id="profile" action="<?php echo site_url('public/admin/User/ajaxUserUpdate') ?>" method="post">
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
@@ -207,7 +207,7 @@
                                         <label class="col-md-12 p-0">Phone No</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="123 456 7890" value="<?= esc($user['phone']) ?>"
-                                                class="form-control p-0 border-0">
+                                                class="form-control p-0 border-0" name="phone">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
@@ -220,15 +220,16 @@
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Store Logo</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="file" name="store_logo" 
-                                                >
+                                            <input type="file" name="vendorFile" 
+                                                class="form-control p-0">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Store Address</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="text" placeholder="Store Address" name="store_name" value="<?= esc($user['store_name']) ?>"
-                                                class="form-control p-0 border-0">
+                                            <input type="text" id="address" name="address" placeholder="Enter address..." class="form-control p-0 border-0" value="<?= esc($user['address']) ?>">
+                                            <div id="suggestions" style="border: 1px solid #ccc; width: auto; max-height: 150px; overflow-y: auto;"></div>
+
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">

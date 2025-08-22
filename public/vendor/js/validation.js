@@ -209,3 +209,97 @@ $('.resend').on('click',function(){
         }, 1000);
     }
 });
+
+$(document).ready(function(){
+    $("#address").on("input", function(){
+        let query = $(this).val();
+
+        if(query.length < 3) { 
+            $("#suggestions").empty();
+            return;
+        }
+
+        $.get("https://nominatim.openstreetmap.org/search?format=json&q=" + query, function(data){
+            $("#suggestions").empty();
+            data.forEach(function(item){
+                $("#suggestions").append(
+                    `<div class="suggestion" style="padding:5px; cursor:pointer;" data-lat="${item.lat}" data-lon="${item.lon}">
+                        ${item.display_name}
+                    </div>`
+                );
+            });
+        });
+    });
+
+    // When a suggestion is clicked
+    $(document).on("click", ".suggestion", function(){
+        let address = $(this).text().trim();
+        let lat = $(this).data("lat");
+        let lon = $(this).data("lon");
+        $("#address").val(address);
+        $("#suggestions").empty();
+
+        console.log("Selected Address:", address, "Lat:", lat, "Lon:", lon);
+    });
+});
+$('#profile').on("submit", function (e) {
+    e.preventDefault();
+
+    let $form = $(this);
+    let $submitBtn = $form.find('button[type="submit"]');
+
+    $submitBtn.text("Updating Profile...");
+    $submitBtn.css("pointer-events", "none");
+
+    let password = $('.password').val().trim();
+    let newPassword = $('.newPassword').val().trim();
+
+    // If password fields are empty → normal profile update
+    if (password !== '' || newPassword !== '') {
+        // Password validation regex
+        let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
+
+        if (!passwordPattern.test(password) || !passwordPattern.test(newPassword)) {
+            alert('Password must be at least 7 characters, include 1 uppercase letter and 1 special character.');
+            resetButton($submitBtn);
+            return;
+        }
+
+        if (password === newPassword) {
+            alert("New password should be different from the old password.");
+            resetButton($submitBtn);
+            return;
+        }
+    }
+
+    
+    let formData = new FormData($form[0]);
+
+    $.ajax({
+        url: ajaxUserUpdateUrl,
+        data: formData,
+        method: "post",
+        dataType: "json",
+        contentType: false,   
+        processData: false,   
+        success: function (response) {
+            if (response.status === 'success') {
+                alert(response.message);
+                location.reload();
+            } else {
+                alert("Error : " + response.message);
+            }
+            resetButton($submitBtn);
+        },
+        error: function (xhr, error) {
+            console.debug(xhr, error);
+            console.log("Error in vendor Update Profile ajax");
+            resetButton($submitBtn);
+        }
+    });
+});
+
+function resetButton($btn) {
+    $btn.text("Update Profile");
+    $btn.css("pointer-events", "auto");
+}

@@ -159,7 +159,7 @@ class User extends BaseController
                 'message' => 'Email not found.'
             ]);
         }
-        
+
 
         if (strtotime($user['code_expires_at']) < time()) {
             return $this->response->setJSON([
@@ -218,11 +218,11 @@ class User extends BaseController
         // Generate verification code
         $verificationCode = random_int(100000, 999999);
 
-        
 
-        $insertId = $this->UserVerifyModel->update($user['id'],[
-            'verification_code'=>$verificationCode,
-            'code_expires_at'=>date('Y-m-d H:i:s',strtotime('+15 minutes'))
+
+        $insertId = $this->UserVerifyModel->update($user['id'], [
+            'verification_code' => $verificationCode,
+            'code_expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
         ]);
 
         if (!$insertId) {
@@ -252,8 +252,8 @@ class User extends BaseController
         }
         $session->set('resend_attempts_' . $emailAddr, $attempts + 1);
         return $this->response->setJSON([
-            'status'=>'success',
-            'message'=>'Email Sent.'
+            'status' => 'success',
+            'message' => 'Email Sent.'
         ]);
     }
 
@@ -275,7 +275,7 @@ class User extends BaseController
                 'message' => 'Wrong password.'
             ]);
         }
-        $session=session();
+        $session = session();
         $session->regenerate(true);
         // Set session
         $session->set([
@@ -291,39 +291,62 @@ class User extends BaseController
             'redirect' => site_url('public/admin/dashboard')
         ]);
     }
-    
+
     // Update Profile
-    public function ajaxUserUpdate(){
-        $emailAddr=$this->request->getPost('email');
-        $userData=$this->UserModel->where('email',$emailAddr)->first();
+    public function ajaxUserUpdate()
+    {
+        $emailAddr = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $newPassword = $this->request->getPost('newPassword');
+        $userData = $this->UserModel->where('email', $emailAddr)->first();
         if (!$userData) {
             return $this->response->setJSON([
                 'status' => 'error',
                 'message' => 'Email not registered. Please register.'
             ]);
         }
-        if(!password_verify($this->request->getPost('password'),$userData['password'])){
+        if ($password == "" && $newPassword == "") {
+            $insertId = $this->UserModel->update(
+                $userData['id'],
+                [
+                    'name' => $this->request->getPost('name')
+                ]
+            );
+            if (!$insertId) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Profile Not Updated Try Again later'
+                ]);
+            }
             return $this->response->setJSON([
-                'status'=>'error',
-                'message'=>'Current Password is Wrong.'
+                'status' => 'success',
+                'message' => 'Profile Updated Successfully.'
             ]);
         }
-        $insertId=$this->UserModel->update($userData['id'],
-        [
-            'name'=>$this->request->getPost('name'),
-            'password'=>password_hash($this->request->getPost('newPassword'),PASSWORD_DEFAULT)
-        ]
-    );
-    if(!$insertId){
+
+        if (!password_verify($this->request->getPost('password'), $userData['password'])) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Current Password is Wrong.'
+            ]);
+        }
+        $insertId = $this->UserModel->update(
+            $userData['id'],
+            [
+                'name' => $this->request->getPost('name'),
+                'password' => password_hash($this->request->getPost('newPassword'), PASSWORD_DEFAULT)
+            ]
+        );
+        if (!$insertId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Profile Not Updated Try Again later'
+            ]);
+        }
         return $this->response->setJSON([
-            'status'=>'error',
-            'message'=>'Profile Not Updated Try Again later'
+            'status' => 'success',
+            'message' => 'Profile Updated Successfully.'
         ]);
-    }
-    return $this->response->setJSON([
-        'status'=>'success',
-        'message'=>'Profile Updated Successfully.'
-    ]);
     }
 
 }

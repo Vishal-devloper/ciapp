@@ -219,7 +219,36 @@ $('#profile').on("submit", function (e) {
         $this.css("pointer-events", "none"); // disable clicks
     let password = $('.password').val().trim();
     let newPassword = $('.newPassword').val().trim();
-
+    if(password=='' && newPassword==''){
+       $.ajax({
+        url: ajaxUserUpdateUrl,
+        data: $(this).serialize(),
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                alert(response.message);
+                location.reload();
+                $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
+                
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor Update Profile ajax");
+            $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
+        }
+    }); 
+    }
+    else{
     let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
 
     if (!passwordPattern.test(password) || !passwordPattern.test(newPassword)) {
@@ -242,6 +271,9 @@ $('#profile').on("submit", function (e) {
         success: function (response) {
             if (response.status === 'success') {
                 alert(response.message);
+                location.reload();
+                $this.text("Update Profile");
+                $this.css("pointer-events", "auto");
             }
             else {
                 alert("Error : " + response.message);
@@ -257,4 +289,5 @@ $('#profile').on("submit", function (e) {
                 $this.css("pointer-events", "auto");
         }
     });
+}
 });

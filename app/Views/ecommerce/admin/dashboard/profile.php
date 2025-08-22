@@ -194,13 +194,13 @@
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Current Password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" placeholder="password" name="password" class="form-control p-0 border-0 password" required>
+                                            <input type="password" placeholder="password" name="password" class="form-control p-0 border-0 password" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">New Password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" placeholder="password" name="newPassword" class="form-control p-0 border-0 newPassword" required>
+                                            <input type="password" placeholder="password" name="newPassword" class="form-control p-0 border-0 newPassword" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
