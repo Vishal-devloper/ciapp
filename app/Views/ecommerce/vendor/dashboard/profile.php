@@ -9,6 +9,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
@@ -88,7 +89,7 @@
                         <!-- ============================================================== -->
                         <li>
                              <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
-                                <img src="<?= base_url('public/vendor/plugins/images/users/varun.jpg') ?>" alt="user-img" width="36"
+                                <img src="<?= base_url('public/'.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
                                     class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->
@@ -148,10 +149,10 @@
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="<?= base_url('public/vendor/plugins/images/large/img1.jpg') ?>">
+                            <div class="user-bg"> 
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="<?= base_url('public/vendor/plugins/images/users/genu.jpg') ?>"
+                                        <a href="javascript:void(0)"><img src="<?= base_url('public/'.$profileImage['profile_path']) ?>"
                                                 class="thumb-lg img-circle" alt="img"></a>
                                         <h4 class="text-white mt-2"><?= esc($user['name']) ?></h4>
                                         <h5 class="text-white mt-2"><?= esc($user['email']) ?></h5>
@@ -218,10 +219,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0">Store Logo</label>
+                                        <label class="col-md-12 p-0">Profile Photo</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="file" name="vendorFile" 
+                                            <input type="file" name="vendorProfilePhoto" 
                                                 class="form-control p-0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <!-- <label class="col-md-12 p-0">Store Logo</label> -->
+                                        <div class="newPadding">
+                                            <div class="row">
+                                                <div class="col-md-6  p-0">
+                                                <input type="file" name="vendorFile" 
+                                                    class="form-control p-0">
+                                                </div>
+                                                <div class="col-md-6 text-center logo_image p-0">
+                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>" alt="" height="100px" width="100px">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">

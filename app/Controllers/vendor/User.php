@@ -334,174 +334,232 @@ class User extends BaseController
 
     }
 
-    private function updateProfileWithoutPassword($userData)
+private function updateProfileWithoutPassword($userData)
 {
-    $img = $this->request->getFile('vendorFile');
-    $filePath = null;
+    $img        = $this->request->getFile('vendorFile');           // Store logo
+    $profileImg = $this->request->getFile('vendorProfilePhoto');   // Profile photo
 
-    
-        if ($img && $img->isValid() && !$img->hasMoved()) {
-                // Validate image
-                $validationRule = [
-                    'vendorFile' => [
-                        'rules' => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
-                        'errors' => [
-                            'is_image' => 'File must be an image',
-                            'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                            'max_size' => 'Image size should not exceed 10MB',
-                        ],
-                    ],
-                ];
-
-                if (!$this->validate($validationRule)) {
-                    return $this->response->setJSON([
-                        'status' => 'error',
-                        'message' => implode('<br>', $this->validator->getErrors())
-                    ]);
-                }
-
-
-                // Check if vendor already has a logo
-                $oldLogo = $this->StoreLogo->where('id', $userData['store_logo_id'])->first();
-
-                if ($oldLogo) {
-                    // Delete old image from server
-                    if (file_exists(FCPATH . $oldLogo['image_path'])) {
-                        unlink(FCPATH . $oldLogo['image_path']);
-                    }
-
-                    // Delete old record from DB
-                    $this->StoreLogo->delete($oldLogo['id']);
-                }
-
-                // Save new image
-                $newName = $img->getRandomName();
-                $img->move(FCPATH . 'uploads/vendor', $newName);
-                $filePath = 'uploads/vendor/' . $newName;
-
-                // Insert new logo
-                $this->StoreLogo->insert([
-                    'vendor_id' => $userData['id'],
-                    'image_path' => $filePath
-                ]);
-                $logoId = $this->StoreLogo->getInsertID();
-                $update = $this->UserModel->update($userData['id'], [
-                    'name' => $this->request->getPost('name'),
-                    'phone' => $this->request->getPost('phone'),
-                    'store_name' => $this->request->getPost('store_name'),
-                    'store_logo_id' => $logoId,
-                    'address' => $this->request->getPost('address'),
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]);
-                
-                if (!$update) {
-                    return $this->response->setJSON([
-                        'status' => 'error',
-                        'message' => 'Profile not updated. Try again later.'
-                    ]);
-                }
-
-                return $this->response->setJSON([
-                    'status' => 'success',
-                    'message' => 'Profile updated successfully!'
-                ]);
-            }
-
-    $update = $this->UserModel->update($userData['id'], [
+    // Update basic fields first
+    $updateData = [
         'name'       => $this->request->getPost('name'),
         'phone'      => $this->request->getPost('phone'),
         'store_name' => $this->request->getPost('store_name'),
         'address'    => $this->request->getPost('address'),
         'updated_at' => date('Y-m-d H:i:s')
-    ]);
+    ];
+
+    /* -------------------------------------------
+       STORE LOGO UPLOAD
+    ------------------------------------------- */
+    if ($img && $img->isValid() && !$img->hasMoved()) {
+        $validationRule = [
+            'vendorFile' => [
+                'rules'  => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
+                'errors' => [
+                    'is_image' => 'File must be an image',
+                    'mime_in'  => 'Only JPG, JPEG, PNG files are allowed',
+                    'max_size' => 'Image size should not exceed 10MB',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($validationRule)) {
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => implode('<br>', $this->validator->getErrors())
+            ]);
+        }
+
+        // Delete old logo if exists
+        $oldLogo = $this->StoreLogo->find($userData['store_logo_id']);
+        if ($oldLogo) {
+            if (file_exists(FCPATH . $oldLogo['logo_path'])) {
+                unlink(FCPATH . $oldLogo['logo_path']);
+            }
+            $this->StoreLogo->update($oldLogo['id'],[
+                'logo_path'=>'NULL'
+            ]);
+        }
+
+        // Save new logo
+        $newLogoName = $img->getRandomName();
+        $img->move(FCPATH . 'uploads/vendor/logo', $newLogoName);
+        $filePath = 'uploads/vendor/logo/' . $newLogoName;
+
+        $this->StoreLogo->insert([
+            'vendor_id'   => $userData['id'],
+            'logo_path'  => $filePath
+        ]);
+        $logoId = $this->StoreLogo->getInsertID();
+
+        $updateData['store_logo_id'] = $logoId;
+    }
+
+    /* -------------------------------------------
+       PROFILE PHOTO UPLOAD
+    ------------------------------------------- */
+    if ($profileImg && $profileImg->isValid() && !$profileImg->hasMoved()) {
+        $validationRuleProfile = [
+            'vendorProfilePhoto' => [
+                'rules'  => 'is_image[vendorProfilePhoto]|mime_in[vendorProfilePhoto,image/jpg,image/jpeg,image/png]|max_size[vendorProfilePhoto,10240]',
+                'errors' => [
+                    'is_image' => 'Profile photo must be an image',
+                    'mime_in'  => 'Only JPG, JPEG, PNG files are allowed',
+                    'max_size' => 'Profile photo size should not exceed 10MB',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($validationRuleProfile)) {
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => implode('<br>', $this->validator->getErrors())
+            ]);
+        }
+
+        $oldProfile = $this->StoreLogo->find($userData['profile_img_id']);
+        if ($oldProfile) {
+            if (file_exists(FCPATH . $oldProfile['profile_path'])) {
+                unlink(FCPATH . $oldProfile['profile_path']);
+            }
+            $this->StoreLogo->update($oldProfile['id'],[
+                'profile_path'=>'NULL'
+            ]);
+        }
+
+        // Save new profile photo
+        $newProfileName = $profileImg->getRandomName();
+        $profileImg->move(FCPATH . 'uploads/vendor/profile', $newProfileName);
+        $profilePath = 'uploads/vendor/profile/' . $newProfileName;
+        // Insert new profile and set FK
+        $this->StoreLogo->insert([
+            'vendor_id' => $userData['id'],
+            'profile_path' => $profilePath
+        ]);
+        $profileId = $this->StoreLogo->getInsertID();
+        $updateData['profile_img_id'] = $profileId;
+    }
+
+    /* -------------------------------------------
+       FINAL UPDATE
+    ------------------------------------------- */
+    $update = $this->UserModel->update($userData['id'], $updateData);
 
     return $this->response->setJSON([
         'status'  => $update ? 'success' : 'error',
         'message' => $update ? 'Profile updated successfully!' : 'Profile not updated. Try again later.'
     ]);
 }
-
 private function updateProfileWithPassword($userData, $newPassword)
 {
-    $img = $this->request->getFile('vendorFile');
-    $filePath = null;
+    $img        = $this->request->getFile('vendorFile');           // Store logo
+    $profileImg = $this->request->getFile('vendorProfilePhoto');   // Profile photo
 
-    if ($img && $img->isValid() && !$img->hasMoved()) {
-            // Validate image
-            $validationRule = [
-                'vendorFile' => [
-                    'rules' => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
-                    'errors' => [
-                        'is_image' => 'File must be an image',
-                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                        'max_size' => 'Image size should not exceed 10MB',
-                    ],
-                ],
-            ];
-
-            if (!$this->validate($validationRule)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => implode('<br>', $this->validator->getErrors())
-                ]);
-            }
-
-
-            // Check if vendor already has a logo
-            $oldLogo = $this->StoreLogo->where('id', $userData['store_logo_id'])->first();
-
-            if ($oldLogo) {
-                // Delete old image from server
-                if (file_exists(FCPATH . $oldLogo['image_path'])) {
-                    unlink(FCPATH . $oldLogo['image_path']);
-                }
-
-                // Delete old record from DB
-                $this->StoreLogo->delete($oldLogo['id']);
-            }
-
-            // Save new image
-            $newName = $img->getRandomName();
-            $img->move(FCPATH . 'uploads/vendor', $newName);
-            $filePath = 'uploads/vendor/' . $newName;
-
-            // Insert new logo
-            $this->StoreLogo->insert([
-                'vendor_id' => $userData['id'],
-                'image_path' => $filePath
-            ]);
-            $logoId = $this->StoreLogo->getInsertID();
-            $update = $this->UserModel->update($userData['id'], [
-                'name' => $this->request->getPost('name'),
-                'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-                'phone' => $this->request->getPost('phone'),
-                'store_name' => $this->request->getPost('store_name'),
-                'store_logo_id' => $logoId,
-                'address' => $this->request->getPost('address'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            
-            if (!$update) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => 'Profile not updated. Try again later.'
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => 'success',
-                'message' => 'Profile updated successfully!'
-            ]);
-        }
-
-    $update = $this->UserModel->update($userData['id'], [
+    
+    $updateData = [
         'name'       => $this->request->getPost('name'),
         'phone'      => $this->request->getPost('phone'),
         'store_name' => $this->request->getPost('store_name'),
         'address'    => $this->request->getPost('address'),
         'password'   => password_hash($newPassword, PASSWORD_DEFAULT),
         'updated_at' => date('Y-m-d H:i:s')
-    ]);
+    ];
+
+    /* -------------------------------------------
+       STORE LOGO UPLOAD  (mirrors WithoutPassword)
+    ------------------------------------------- */
+    if ($img && $img->isValid() && !$img->hasMoved()) {
+        $validationRule = [
+            'vendorFile' => [
+                'rules'  => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
+                'errors' => [
+                    'is_image' => 'File must be an image',
+                    'mime_in'  => 'Only JPG, JPEG, PNG files are allowed',
+                    'max_size' => 'Image size should not exceed 10MB',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($validationRule)) {
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => implode('<br>', $this->validator->getErrors())
+            ]);
+        }
+
+        // Delete old logo if exists
+        $oldLogo = $this->StoreLogo->find($userData['store_logo_id']);
+        if ($oldLogo) {
+            if (file_exists(FCPATH . $oldLogo['logo_path'])) {
+                unlink(FCPATH . $oldLogo['logo_path']);
+            }
+            
+            $this->StoreLogo->update($oldLogo['id'], ['logo_path' => 'NULL']);
+        }
+
+        // Save new logo
+        $newLogoName = $img->getRandomName();
+        $img->move(FCPATH . 'uploads/vendor/logo', $newLogoName);
+        $filePath = 'uploads/vendor/logo/' . $newLogoName;
+
+        // Insert new logo and set FK
+        $this->StoreLogo->insert([
+            'vendor_id' => $userData['id'],
+            'logo_path' => $filePath
+        ]);
+        $logoId = $this->StoreLogo->getInsertID();
+
+        $updateData['store_logo_id'] = $logoId;
+    }
+
+    /* -------------------------------------------
+       PROFILE PHOTO UPLOAD  (mirrors WithoutPassword)
+    ------------------------------------------- */
+    if ($profileImg && $profileImg->isValid() && !$profileImg->hasMoved()) {
+        $validationRuleProfile = [
+            'vendorProfilePhoto' => [
+                'rules'  => 'is_image[vendorProfilePhoto]|mime_in[vendorProfilePhoto,image/jpg,image/jpeg,image/png]|max_size[vendorProfilePhoto,10240]',
+                'errors' => [
+                    'is_image' => 'Profile photo must be an image',
+                    'mime_in'  => 'Only JPG, JPEG, PNG files are allowed',
+                    'max_size' => 'Profile photo size should not exceed 10MB',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($validationRuleProfile)) {
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => implode('<br>', $this->validator->getErrors())
+            ]);
+        }
+
+        // Your existing pattern uses StoreLogo for profile too
+        $oldProfile = $this->StoreLogo->find($userData['profile_img_id']);
+        if ($oldProfile) {
+            if (file_exists(FCPATH . $oldProfile['profile_path'])) {
+                unlink(FCPATH . $oldProfile['profile_path']);
+            }
+            $this->StoreLogo->update($oldProfile['id'], ['profile_path' => 'NULL']);
+        }
+
+        // Save new profile photo
+        $newProfileName = $profileImg->getRandomName();
+        $profileImg->move(FCPATH . 'uploads/vendor/profile', $newProfileName);
+        $profilePath = 'uploads/vendor/profile/' . $newProfileName;
+        // Insert new profile and set FK
+        $this->StoreLogo->insert([
+            'vendor_id' => $userData['id'],
+            'profile_path' => $profilePath
+        ]);
+        $profileId = $this->StoreLogo->getInsertID();
+        $updateData['profile_img_id'] = $profileId;
+    }
+
+    /* -------------------------------------------
+       FINAL UPDATE
+    ------------------------------------------- */
+    $update = $this->UserModel->update($userData['id'], $updateData);
 
     return $this->response->setJSON([
         'status'  => $update ? 'success' : 'error',

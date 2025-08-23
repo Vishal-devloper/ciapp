@@ -56,6 +56,10 @@ h2 {
   color: red;
   font-size: 15px;
 }
+.logo_image img{
+  border-radius: 50%;
+}
+
 .input-field label {
   position: absolute;
   top: 50%;
