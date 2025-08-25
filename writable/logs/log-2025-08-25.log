@@ -1,0 +1,147 @@
+DEBUG - 2025-08-25 16:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:23:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:24:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:28:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:31:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-25 16:33:32 --> ErrorException: Undefined array key "profile_path"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 422.
+ 1 APPPATH\Controllers\vendor\User.php(422): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "profile_path"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 422)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-08-25 16:33:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-25 16:35:40 --> ErrorException: Undefined array key "logo_path"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 376.
+ 1 APPPATH\Controllers\vendor\User.php(376): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "logo_path"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 376)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 16:39:13 --> ErrorException: Undefined array key "logo_path"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 376.
+ 1 APPPATH\Controllers\vendor\User.php(376): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "logo_path"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 376)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 16:41:00 --> ErrorException: Undefined array key "profile_path"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 422.
+ 1 APPPATH\Controllers\vendor\User.php(422): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "profile_path"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 422)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 16:43:17 --> ErrorException: Undefined array key "logo_path"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 376.
+ 1 APPPATH\Controllers\vendor\User.php(376): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "logo_path"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 376)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-08-25 16:47:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:56:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 16:57:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:01:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:02:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:07:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:08:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:09:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:20:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-25 17:20:24 --> ErrorException: Trying to access array offset on null
+[Method: GET, Route: vendor/profile]
+in APPPATH\Views\ecommerce\vendor\dashboard\profile.php on line 92.
+ 1 APPPATH\Views\ecommerce\vendor\dashboard\profile.php(92): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on null', 'C:\\xampp\\htdocs\\ciapp\\app\\Views\\ecommerce\\vendor\\dashboard\\profile.php', 92)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ciapp\\app\\Views\\ecommerce\\vendor\\dashboard\\profile.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():223}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('ecommerce/vendor/dashboard/profile', [], true)
+ 5 APPPATH\Controllers\vendor\ShopVendorController.php(57): view('ecommerce/vendor/dashboard/profile', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\ShopVendorController->profile()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\ShopVendorController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-08-25 17:21:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-25 17:21:17 --> ErrorException: Undefined array key "id"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 389.
+ 1 APPPATH\Controllers\vendor\User.php(389): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 389)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 17:21:25 --> ErrorException: Undefined array key "id"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 389.
+ 1 APPPATH\Controllers\vendor\User.php(389): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 389)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 17:21:34 --> ErrorException: Undefined array key "id"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 389.
+ 1 APPPATH\Controllers\vendor\User.php(389): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 389)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-25 17:24:50 --> ErrorException: Undefined array key "id"
+[Method: POST, Route: vendor/User/ajaxUserUpdate]
+in APPPATH\Controllers\vendor\User.php on line 389.
+ 1 APPPATH\Controllers\vendor\User.php(389): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\ciapp\\app\\Controllers\\vendor\\User.php', 389)
+ 2 APPPATH\Controllers\vendor\User.php(321): App\Controllers\vendor\User->updateProfileWithoutPassword([...])
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\vendor\User->ajaxUserUpdate()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\vendor\User))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-08-25 17:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-25 17:54:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

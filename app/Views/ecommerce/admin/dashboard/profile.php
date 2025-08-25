@@ -88,7 +88,7 @@
                         <!-- ============================================================== -->
                         <li>
                              <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
-                                <img src="<?= base_url('public/admin/plugins/images/users/varun.jpg') ?>" alt="user-img" width="36"
+                                <img src="<?= base_url('public/admin/plugins/images/users/genu.jpg') ?>" alt="user-img" width="36"
                                     class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->

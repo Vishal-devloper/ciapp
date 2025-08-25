@@ -253,6 +253,13 @@ $('#profile').on("submit", function (e) {
 
     let password = $('.password').val().trim();
     let newPassword = $('.newPassword').val().trim();
+    let phone = $('.phone').val().trim();
+    let phoneRegex = /^[6-9]\d{9}$/;
+    if(!phoneRegex.test(phone)){
+        alert('Please enter a valid 10-digit phone number');
+        resetButton($submitBtn);
+        return;
+    }
 
     // If password fields are empty → normal profile update
     if (password !== '' || newPassword !== '') {

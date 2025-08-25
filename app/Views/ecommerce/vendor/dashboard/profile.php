@@ -208,7 +208,7 @@
                                         <label class="col-md-12 p-0">Phone No</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="123 456 7890" value="<?= esc($user['phone']) ?>"
-                                                class="form-control p-0 border-0" name="phone">
+                                                class="form-control p-0 border-0 phone" name="phone">
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
@@ -226,15 +226,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <!-- <label class="col-md-12 p-0">Store Logo</label> -->
+                                        <label class="col-md-12 p-0">Store Logo</label>
                                         <div class="newPadding">
-                                            <div class="row">
+                                            <div class="row px-3">
                                                 <div class="col-md-6  p-0">
                                                 <input type="file" name="vendorFile" 
                                                     class="form-control p-0">
                                                 </div>
                                                 <div class="col-md-6 text-center logo_image p-0">
-                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>" alt="" height="100px" width="100px">
+                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
                                                 </div>
                                             </div>
                                         </div>
