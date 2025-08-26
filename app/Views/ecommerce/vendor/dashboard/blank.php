@@ -35,7 +35,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url('public/vendor/dashboard') ?>">
+                    <a class="navbar-brand" href="<?= base_url('vendor/dashboard') ?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -87,7 +87,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                             <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
+                             <a class="profile-pic" href="<?= base_url('vendor/profile') ?>">
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
                                     class="img-circle"> </a>
                         </li>

@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form id="RegisterVerifyForm" action="<?php echo site_url('public/admin/User/ajaxCodeVerify') ?>" method="post">
+    <form id="RegisterVerifyForm" action="<?php echo site_url('admin/User/ajaxCodeVerify') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Admin Register</h2>
         <div class="input-field padding-bottom">
@@ -24,8 +24,8 @@
     </form>
   </div>
   <script>
-    const ajaxRequestUrlRegisterVerify ="<?= site_url('public/admin/User/ajaxCodeVerify') ?>";
-    const ajaxRequestUrlRegisterVerifyResend ="<?= site_url('public/admin/User/ajaxCodeVerifyResend') ?>";
+    const ajaxRequestUrlRegisterVerify ="<?= site_url('admin/User/ajaxCodeVerify') ?>";
+    const ajaxRequestUrlRegisterVerifyResend ="<?= site_url('admin/User/ajaxCodeVerifyResend') ?>";
   </script>
   <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>
 </body>

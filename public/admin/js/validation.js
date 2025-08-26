@@ -59,6 +59,8 @@ $('#loginForm').on("submit", function (e) {
 
     if (!passwordPattern.test(password)) {
         alert('Password must be at least 7 characters, include 1 uppercase letter and 1 special character.');
+        $this.text("Login");
+        $this.css("pointer-events", "auto");
         return;
     }
 

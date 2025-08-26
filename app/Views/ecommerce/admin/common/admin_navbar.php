@@ -6,49 +6,49 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/dashboard') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/dashboard') ?>"
                                 aria-expanded="false">
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/profile') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/profile') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/basic_table') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/vendor') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Vendor</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/fontawesome') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/fontawesome') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
                                 <span class="hide-menu">Icon</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/map_google') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/map_google') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
                                 <span class="hide-menu">Google Map</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/blank') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/blank') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Blank Page</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('public/admin/error') ?>"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/error') ?>"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span class="hide-menu">Error 404</span>

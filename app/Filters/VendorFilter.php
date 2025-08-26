@@ -13,7 +13,7 @@ class VendorFilter implements FilterInterface
         $session = session();
 
         if (! $session->get('isVendorLogin')) {
-            return redirect()->to(base_url('public/vendor/login'));
+            return redirect()->to(base_url('vendor/login'));
         }
     }
 

@@ -36,7 +36,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url('public/vendor/dashboard') ?>">
+                    <a class="navbar-brand" href="<?= base_url('vendor/dashboard') ?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -88,8 +88,8 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                             <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
-                                <img src="<?= base_url('public/'.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
+                             <a class="profile-pic" href="<?= base_url('vendor/profile') ?>">
+                                <img src="<?= base_url(''.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
                                     class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->
@@ -152,7 +152,7 @@
                             <div class="user-bg"> 
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="<?= base_url('public/'.$profileImage['profile_path']) ?>"
+                                        <a href="javascript:void(0)"><img src="<?= base_url(''.$profileImage['profile_path']) ?>"
                                                 class="thumb-lg img-circle" alt="img"></a>
                                         <h4 class="text-white mt-2"><?= esc($user['name']) ?></h4>
                                         <h5 class="text-white mt-2"><?= esc($user['email']) ?></h5>
@@ -177,7 +177,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material" enctype="multipart/form-data" id="profile" action="<?php echo site_url('public/admin/User/ajaxUserUpdate') ?>" method="post">
+                                <form class="form-horizontal form-material" enctype="multipart/form-data" id="profile" action="<?php echo site_url('admin/User/ajaxUserUpdate') ?>" method="post">
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
@@ -234,7 +234,7 @@
                                                     class="form-control p-0">
                                                 </div>
                                                 <div class="col-md-6 text-center logo_image p-0">
-                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
+                                                        <img src="<?= base_url('' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
                                                 </div>
                                             </div>
                                         </div>
@@ -294,9 +294,9 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
      <script>
-        const ajaxUserUpdateUrl='<?= base_url('public/vendor/User/ajaxUserUpdate') ?>';
+        const ajaxUserUpdateUrl='<?= base_url('vendor/User/ajaxUserUpdate') ?>';
      </script>
-     <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>
+     <script src="<?= base_url('vendor/js/validation.js') ?>"></script>
     <?= view('ecommerce/vendor/common/vendor_foot') ?>
 </body>
 

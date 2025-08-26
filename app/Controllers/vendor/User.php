@@ -83,7 +83,7 @@ class User extends BaseController
                 unset($email);
                 return $this->response->setJSON([
                     'status' => 'success',
-                    'redirect' => site_url('public/vendor/verify?email=' . urlencode($emailAddr))
+                    'redirect' => site_url('vendor/verify?email=' . urlencode($emailAddr))
                 ]);
             }
 
@@ -135,7 +135,7 @@ class User extends BaseController
             unset($email);
             return $this->response->setJSON([
                 'status' => 'success',
-                'redirect' => site_url('public/vendor/verify?email=' . urlencode($emailAddr))
+                'redirect' => site_url('vendor/verify?email=' . urlencode($emailAddr))
             ]);
 
 
@@ -199,7 +199,7 @@ class User extends BaseController
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Verification successful',
-            'redirect' => site_url('public/vendor/login')
+            'redirect' => site_url('vendor/login')
         ]);
     }
     // Resend code
@@ -297,7 +297,7 @@ class User extends BaseController
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Login successful.',
-            'redirect' => site_url('public/vendor/dashboard')
+            'redirect' => site_url('vendor/dashboard')
         ]);
     }
     public function ajaxUserUpdate()

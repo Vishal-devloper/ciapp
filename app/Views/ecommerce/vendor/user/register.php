@@ -40,12 +40,12 @@
       </div>
       <button type="submit">Register</button>
       <div class="register">
-        <p>Already have an account? <a href="<?php echo base_url('public/vendor/login') ?>">Login</a></p>
+        <p>Already have an account? <a href="<?php echo base_url('vendor/login') ?>">Login</a></p>
       </div>
     </form>
   </div>
   <script>
-    const ajaxRequestUrl ="<?= site_url('public/vendor/User/ajaxRegister') ?>";
+    const ajaxRequestUrl ="<?= site_url('vendor/User/ajaxRegister') ?>";
   </script>
   <script src="<?= base_url('public/vendor/js/register.js') ?>"></script>
   <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>

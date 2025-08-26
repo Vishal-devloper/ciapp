@@ -1,0 +1,2 @@
+1 what if i reload after clicking the resend 
+2 what if i use same email after resend otp limit 

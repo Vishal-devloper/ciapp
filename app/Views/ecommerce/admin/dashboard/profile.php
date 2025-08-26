@@ -35,7 +35,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url('public/admin/dashboard') ?>">
+                    <a class="navbar-brand" href="<?= base_url('admin/dashboard') ?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
@@ -87,7 +87,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li>
-                             <a class="profile-pic" href="<?= base_url('public/vendor/profile') ?>">
+                             <a class="profile-pic" href="<?= base_url('vendor/profile') ?>">
                                 <img src="<?= base_url('public/admin/plugins/images/users/genu.jpg') ?>" alt="user-img" width="36"
                                     class="img-circle"> </a>
                         </li>
@@ -176,7 +176,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material" id="profile" action="<?php echo site_url('public/admin/User/ajaxUserUpdate') ?>" method="post" >
+                                <form class="form-horizontal form-material" id="profile" action="<?php echo site_url('admin/User/ajaxUserUpdate') ?>" method="post" >
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
@@ -250,9 +250,9 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
      <script>
-        const ajaxUserUpdateUrl='<?= base_url('public/admin/User/ajaxUserUpdate') ?>';
+        const ajaxUserUpdateUrl='<?= base_url('admin/User/ajaxUserUpdate') ?>';
      </script>
-     <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>
+     <script src="<?= base_url('admin/js/validation.js') ?>"></script>
     <?= view('ecommerce/admin/common/admin_foot') ?>
 </body>
 

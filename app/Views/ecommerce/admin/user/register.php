@@ -32,12 +32,12 @@
       </div>
       <button type="submit">Register</button>
       <div class="register">
-        <p>Already have an account? <a href="<?php echo base_url('public/admin/login') ?>">Login</a></p>
+        <p>Already have an account? <a href="<?php echo base_url('admin/login') ?>">Login</a></p>
       </div>
     </form>
   </div>
   <script>
-    const ajaxRequestUrl ="<?= site_url('public/admin/User/ajaxRegister') ?>";
+    const ajaxRequestUrl ="<?= site_url('admin/User/ajaxRegister') ?>";
   </script>
   <script src="<?= base_url('public/admin/js/register.js') ?>"></script>
   <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>

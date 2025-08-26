@@ -3,16 +3,19 @@ namespace App\Controllers\admin;
 
 use App\Controllers\BaseController;
 use App\Models\admin\UserModel;
+use App\Models\admin\VendorModel;
 
 
 class ShopAdminController extends BaseController
 {
     
     protected $UserModel;
+    protected $VendorModel;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
+        $this->VendorModel = new VendorModel();
         helper(['form', 'url']);
     }
     
@@ -47,9 +50,9 @@ class ShopAdminController extends BaseController
     {   
         return view('ecommerce/admin/dashboard/error');
     }
-    public function basic_table(): string
-    {   
-        return view('ecommerce/admin/dashboard/basic_table');
+    public function vendor(): string
+    {   $data['vendors']=$this->VendorModel->findAll();
+        return view('ecommerce/admin/dashboard/vendor',$data);
     }
     public function fontawesome(): string
     {   

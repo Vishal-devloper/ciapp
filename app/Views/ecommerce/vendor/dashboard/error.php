@@ -55,9 +55,9 @@
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="<?= base_url('public/plugins/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('plugins/bower_components/jquery/dist/jquery.min.js') ?>"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url('public/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= base_url('bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->

@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form id="loginForm" action="<?php echo site_url('public/admin/User/ajaxLogin') ?>" method="post">
+    <form id="loginForm" action="<?php echo site_url('admin/User/ajaxLogin') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Admin Login</h2>
         <div class="input-field">
@@ -29,12 +29,12 @@
       </div>
       <button type="submit">Log In</button>
       <div class="register">
-        <p>Don't have an account? <a href="<?php echo base_url('public/admin/register') ?>">Register</a></p>
+        <p>Don't have an account? <a href="<?php echo base_url('admin/register') ?>">Register</a></p>
       </div>
     </form>
   </div>
   <script>
-    const ajaxRequestUrlLogin ="<?= site_url('public/admin/User/ajaxLogin') ?>";
+    const ajaxRequestUrlLogin ="<?= site_url('admin/User/ajaxLogin') ?>";
   </script>
   <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>
 </body>

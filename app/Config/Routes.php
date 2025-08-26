@@ -10,7 +10,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/admin/dashboard', 'admin\ShopAdminController::dashboard', ['filter' => 'auth']);
 $routes->get('/admin/profile', 'admin\ShopAdminController::profile', ['filter' => 'auth']);
 $routes->get('/admin/error', 'admin\ShopAdminController::error', ['filter' => 'auth']);
-$routes->get('/admin/basic_table', 'admin\ShopAdminController::basic_table', ['filter' => 'auth']);
+$routes->get('/admin/vendor', 'admin\ShopAdminController::vendor', ['filter' => 'auth']);
 $routes->get('/admin/blank', 'admin\ShopAdminController::blank', ['filter' => 'auth']);
 $routes->get('/admin/fontawesome', 'admin\ShopAdminController::fontawesome', ['filter' => 'auth']);
 $routes->get('/admin/map_google', 'admin\ShopAdminController::map_google', ['filter' => 'auth']);
@@ -22,6 +22,9 @@ $routes->post('admin/User/ajaxLogin', 'admin\User::ajaxLogin');
 $routes->post('admin/User/ajaxCodeVerify', 'admin\User::ajaxCodeVerify');
 $routes->post('admin/User/ajaxCodeVerifyResend', 'admin\User::ajaxCodeVerifyResend');
 $routes->post('admin/User/ajaxUserUpdate', 'admin\User::ajaxUserUpdate');
+// Vendors data
+$routes->post('admin/Vendor/getVendors', 'admin\Vendor::getVendors');
+
 
 // Vendor
 $routes->get('/vendor/dashboard', 'vendor\ShopVendorController::dashboard', ['filter' => 'vendorAuth']);

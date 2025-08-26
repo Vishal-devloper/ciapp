@@ -8,12 +8,29 @@
         content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
     <title>Ample Admin Lite Template by WrapPixel</title>
-
+    
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/admin/plugins/images/favicon.png') ?>">
     <!-- Custom CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
     <link href="<?= base_url('public/admin/plugins/bower_components/chartist/dist/chartist.min.css') ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('public/admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') ?>">
     <!-- Custom CSS -->
+     <link href="<?= base_url('public/admin/css/custom.css') ?>" rel="stylesheet">
     <link href="<?= base_url('public/admin/css/style.min.css') ?>" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+  <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+<!-- Bootstrap 5 DataTables CSS (optional, for Bootstrap styling) -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+

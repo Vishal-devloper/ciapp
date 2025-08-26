@@ -13,7 +13,7 @@ class AdminFilter implements FilterInterface
         $session = session();
 
         if (!$session->get('isAdminLogin')) {
-            return redirect()->to(base_url('public/admin/login'));
+            return redirect()->to(base_url('admin/login'));
         }
     }
 
