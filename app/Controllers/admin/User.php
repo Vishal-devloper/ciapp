@@ -4,15 +4,18 @@ namespace App\Controllers\admin;
 use App\Controllers\BaseController;
 use App\Models\admin\UserModel;
 use App\Models\admin\UserVerifyModel;
+use App\Models\admin\PasswordReset;
 
 class User extends BaseController
 {
     protected $UserModel;
     protected $UserVerifyModel;
+    protected $PasswordReset;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
+        $this->PasswordReset = new PasswordReset();
         $this->UserVerifyModel = new UserVerifyModel();
         helper(['form', 'url']);
     }
@@ -349,4 +352,61 @@ class User extends BaseController
         ]);
     }
 
+
+    // forgot password
+
+    public function forgotPassword(){
+        $emailAddr = $this->request->getPost('email');
+        $user=$this->UserModel->where('email',$emailAddr)->first();
+        if(!$user){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Email not registered please register'
+            ]);
+        }
+        // Generate verification code
+        $verificationCode = random_int(100000, 999999);
+
+        $data=[
+            'email'=>$emailAddr,
+            'otp' => $verificationCode,
+            'expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
+        ];
+
+        $insertId = $this->PasswordReset->insert($data);
+
+        if (!$insertId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Code sending failed Please Try again'
+            ]);
+        }
+
+        // Send verification email
+        $email = \Config\Services::email();
+        $email->setFrom('noreplyzem63@gmail.com', 'Zem e-commerce');
+        $email->setTo($emailAddr);
+        $email->setSubject('Email Verification Code');
+        $email->setMessage("Your verification code is: <b>$verificationCode</b>. It will expire in 15 minutes.");
+
+        if (!$email->send()) {
+            log_message('error', $email->printDebugger(['headers', 'subject', 'body']));
+            $email->clear(true);
+            $email->SMTPKeepAlive = false;
+            unset($email);
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Unable to send verification email.'
+            ]);
+
+        }
+        
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Email Sent.',
+            'redirect'=>site_url('admin/reset-verify?email=' . urlencode($emailAddr))
+        ]);
+
+    }
 }
+

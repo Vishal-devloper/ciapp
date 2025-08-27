@@ -15,12 +15,15 @@ $routes->get('/admin/blank', 'admin\ShopAdminController::blank', ['filter' => 'a
 $routes->get('/admin/fontawesome', 'admin\ShopAdminController::fontawesome', ['filter' => 'auth']);
 $routes->get('/admin/map_google', 'admin\ShopAdminController::map_google', ['filter' => 'auth']);
 $routes->get('/admin/login','admin\ShopAdminController::login');
+$routes->get('/admin/forgot-password','admin\ShopAdminController::forgotPassword');
 $routes->get('/admin/verify','admin\ShopAdminController::verify');
 $routes->get('/admin/register','admin\ShopAdminController::register');
+$routes->get('/admin/reset-verify','admin\ShopAdminController::resetVerify');
 $routes->post('admin/User/ajaxRegister', 'admin\User::ajaxRegister');
 $routes->post('admin/User/ajaxLogin', 'admin\User::ajaxLogin');
 $routes->post('admin/User/ajaxCodeVerify', 'admin\User::ajaxCodeVerify');
 $routes->post('admin/User/ajaxCodeVerifyResend', 'admin\User::ajaxCodeVerifyResend');
+$routes->post('admin/User/forgotPassword', 'admin\User::forgotPassword');
 $routes->post('admin/User/ajaxUserUpdate', 'admin\User::ajaxUserUpdate');
 // Vendors data
 $routes->post('admin/Vendor/getVendors', 'admin\Vendor::getVendors');

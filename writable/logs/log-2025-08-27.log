@@ -1,0 +1,86 @@
+DEBUG - 2025-08-27 16:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-08-27 16:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-08-27 18:12:51 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2025-08-27 18:12:51 --> 220 smtp.gmail.com ESMTP d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+
+hello: 250-smtp.gmail.com at your service, [2001:4490:4869:3bfb:4445:9ecd:b40f:5b19]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+starttls: 220 2.0.0 Ready to start TLS
+
+hello: 250-smtp.gmail.com at your service, [2001:4490:4869:3bfb:4445:9ecd:b40f:5b19]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+from: 250 2.1.0 OK d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+
+to: 250 2.1.5 OK d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+
+data: 
+The following SMTP error was encountered: 
+quit: 
+The following SMTP error was encountered: 
+ERROR - 2025-08-27 18:12:51 --> 220 smtp.gmail.com ESMTP d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+<br><pre>hello: 250-smtp.gmail.com at your service, [2001:4490:4869:3bfb:4445:9ecd:b40f:5b19]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+</pre><pre>starttls: 220 2.0.0 Ready to start TLS
+</pre><pre>hello: 250-smtp.gmail.com at your service, [2001:4490:4869:3bfb:4445:9ecd:b40f:5b19]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+</pre><pre>from: 250 2.1.0 OK d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+</pre><pre>to: 250 2.1.5 OK d9443c01a7336-246687b2418sm121310355ad.45 - gsmtp
+</pre><pre>data: </pre>The following SMTP error was encountered: <br><pre>quit: </pre>The following SMTP error was encountered: <br>Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Wed, 27 Aug 2025 18:12:25 +0530
+From: &quot;Zem e-commerce&quot; &lt;noreplyzem63@gmail.com&gt;
+Return-Path: &lt;noreplyzem63@gmail.com&gt;
+To: v4516820@gmail.com
+Subject: =?UTF-8?Q?Email=20Verification=20Code?=
+Reply-To: &lt;noreplyzem63@gmail.com&gt;
+User-Agent: CodeIgniter
+X-Sender: noreplyzem63@gmail.com
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;68aefd3191d429.67833960@gmail.com&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_68aefd3191d6e3.55712283&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_68aefd3191d6e3.55712283
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Your verification code is: 646522. It will expire in 15 minutes.
+
+
+--B_ALT_68aefd3191d6e3.55712283
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Your verification code is: &lt;b&gt;646522&lt;/b&gt;. It will expire in 15 minutes.
+
+--B_ALT_68aefd3191d6e3.55712283--</pre>

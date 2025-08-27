@@ -293,3 +293,42 @@ $('#profile').on("submit", function (e) {
     });
 }
 });
+
+
+// forgot password
+
+
+$('#forgotPassword').on("submit", function (e) {
+    e.preventDefault();
+    let $this = $('#forgotPassword button[type="submit"]');
+        $this.text("Sending Code...");
+        $this.css("pointer-events", "none"); // disable clicks
+    let email = $('#email').val().trim();
+
+    
+    $.ajax({
+        url: ajaxRequestUrlForgotPassword,
+        data: $(this).serialize(),
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                alert(response.message);
+                window.location.href = response.redirect;
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("Get Code");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor login ajax");
+            $this.text("Get Code");
+                $this.css("pointer-events", "auto");
+        }
+    });
+});
+
