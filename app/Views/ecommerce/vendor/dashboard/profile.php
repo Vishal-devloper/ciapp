@@ -89,7 +89,7 @@
                         <!-- ============================================================== -->
                         <li>
                              <a class="profile-pic" href="<?= base_url('vendor/profile') ?>">
-                                <img src="<?= base_url(''.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
+                                <img src="<?= base_url('public/'.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
                                     class="img-circle"> </a>
                         </li>
                         <!-- ============================================================== -->
@@ -152,7 +152,7 @@
                             <div class="user-bg"> 
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="<?= base_url(''.$profileImage['profile_path']) ?>"
+                                        <a href="javascript:void(0)"><img src="<?= base_url('public/'.$profileImage['profile_path']) ?>"
                                                 class="thumb-lg img-circle" alt="img"></a>
                                         <h4 class="text-white mt-2"><?= esc($user['name']) ?></h4>
                                         <h5 class="text-white mt-2"><?= esc($user['email']) ?></h5>
@@ -234,7 +234,7 @@
                                                     class="form-control p-0">
                                                 </div>
                                                 <div class="col-md-6 text-center logo_image p-0">
-                                                        <img src="<?= base_url('' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
+                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
                                                 </div>
                                             </div>
                                         </div>

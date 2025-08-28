@@ -5,18 +5,21 @@ use App\Controllers\BaseController;
 use App\Models\vendor\UserModel;
 use App\Models\vendor\UserVerifyModel;
 use App\Models\vendor\StoreLogo;
+use App\Models\vendor\PasswordReset;
 
 class User extends BaseController
 {
     protected $UserModel;
     protected $UserVerifyModel;
     protected $StoreLogo;
+    protected $PasswordReset;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
         $this->UserVerifyModel = new UserVerifyModel();
         $this->StoreLogo = new StoreLogo();
+        $this->PasswordReset = new PasswordReset();
         helper(['form', 'url']);
     }
 
@@ -603,4 +606,207 @@ class User extends BaseController
     }
 
 
+    // forgot password
+
+    public function forgotPassword(){
+        $emailAddr = $this->request->getPost('email');
+        $user=$this->UserModel->where('email',$emailAddr)->first();
+        if(!$user){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Email not registered please register'
+            ]);
+        }
+        // Generate verification code
+        $verificationCode = random_int(100000, 999999);
+
+        $data=[
+            'email'=>$emailAddr,
+            'otp' => $verificationCode,
+            'expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
+        ];
+
+        $email_check=$this->PasswordReset->where('email',$emailAddr)->first();
+        if(!$email_check){
+            $insertId = $this->PasswordReset->insert($data);
+        }
+        else{
+            $insertId = $this->PasswordReset->update($email_check['id'],$data);
+        }
+
+        if (!$insertId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Code sending failed Please Try again'
+            ]);
+        }
+
+        // Send verification email
+        $email = \Config\Services::email();
+        $email->setFrom('noreplyzem63@gmail.com', 'Zem e-commerce');
+        $email->setTo($emailAddr);
+        $email->setSubject('Email Verification Code');
+        $email->setMessage("Your verification code is: <b>$verificationCode</b>. It will expire in 15 minutes.");
+
+        if (!$email->send()) {
+            log_message('error', $email->printDebugger(['headers', 'subject', 'body']));
+            $email->clear(true);
+            $email->SMTPKeepAlive = false;
+            unset($email);
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Unable to send verification email.'
+            ]);
+
+        }
+        
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Email Sent.',
+            'redirect'=>site_url('vendor/reset-verify?email=' . urlencode($emailAddr))
+        ]);
+
+    }
+    // forgot password code verify
+
+    public function forgotCodeVerify(){
+        $code = $this->request->getPost('code');
+        $email = $this->request->getPost('email');
+
+        if (empty($code) || empty($email)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Invalid request. Email or code missing.'
+            ]);
+        }
+        $user = $this->PasswordReset->where('email', $email)->first();
+        if (!$user) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Email not found.'
+            ]);
+        }
+
+
+        if (strtotime($user['expires_at']) < time()) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Verification code expired.'
+            ]);
+        }
+        if ((string) $user['otp'] !== (string) $code) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Wrong verification code.'
+            ]);
+        }
+        $this->PasswordReset->update($user['id'], [
+            'otp' => null,
+            'expires_at' => null,
+            'status' => 'verified'
+        ]);
+
+        
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Verification successful',
+            'redirect' => site_url('vendor/create-new-password?email='.urlencode($user['email']))
+        ]);
+    }
+    public function forgotCodeVerifyResend(){
+        $emailAddr = $this->request->getPost('email');
+        $session = session();
+
+        // Track resend attempts
+        $attempts = $session->get('resend_attempts_' . $emailAddr) ?? 0;
+
+        if ($attempts >= 4) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'You have reached the maximum resend limit (4 times).'
+            ]);
+        }
+        $user = $this->PasswordReset->where('email', $emailAddr)->first();
+        if (!$user) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Email not found to resend code please register.'
+            ]);
+        }
+        // Generate verification code
+        $verificationCode = random_int(100000, 999999);
+
+
+
+        $insertId = $this->PasswordReset->update($user['id'], [
+            'otp' => $verificationCode,
+            'expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
+        ]);
+
+        if (!$insertId) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Resend code failed Please Try again'
+            ]);
+        }
+
+        // Send verification email
+        $email = \Config\Services::email();
+        $email->setFrom('noreplyzem63@gmail.com', 'Zem e-commerce');
+        $email->setTo($emailAddr);
+        $email->setSubject('Email Verification Code');
+        $email->setMessage("Your verification code is: <b>$verificationCode</b>. It will expire in 15 minutes.");
+
+        if (!$email->send()) {
+            log_message('error', $email->printDebugger(['headers', 'subject', 'body']));
+            $email->clear(true);
+            $email->SMTPKeepAlive = false;
+            unset($email);
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Unable to send verification email.'
+            ]);
+
+        }
+        $session->set('resend_attempts_' . $emailAddr, $attempts + 1);
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Email Sent.'
+        ]);
+    }
+    // New Password
+    public function newPassword(){
+        $password = $this->request->getPost('password');
+        $email = $this->request->getPost('email');
+
+        if (empty($password) || empty($email)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Invalid request. Email missing.'
+            ]);
+        }
+        $user = $this->UserModel->where('email', $email)->first();
+        if (!$user) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Email not found.'
+            ]);
+        }
+        $insertId=$this->UserModel->update($user['id'],[
+            'password'=>password_hash($password,PASSWORD_DEFAULT)
+        ]);
+        if(!$insertId){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Password Not updated Please try again'
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status'=>'success',
+            'message'=>'Password Updated Successfully',
+            'redirect'=>site_url('vendor/login')
+        ]);
+
+    }
 }

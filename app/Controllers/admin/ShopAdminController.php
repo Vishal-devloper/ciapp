@@ -31,6 +31,10 @@ class ShopAdminController extends BaseController
     {
         return view('ecommerce/admin/user/resetVerify');
     }
+    public function newPassword():string
+    {
+        return view('ecommerce/admin/user/newPassword');
+    }
     public function verify():string
     {
         return view('ecommerce/admin/user/verify');

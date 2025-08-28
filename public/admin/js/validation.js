@@ -332,3 +332,159 @@ $('#forgotPassword').on("submit", function (e) {
     });
 });
 
+
+// Code verification
+
+$('#forgotVerifyForm').on("submit", function (e) {
+    e.preventDefault();
+    let $this = $('#forgotVerifyForm button[type="submit"]');
+        $this.text("Verifying...");
+        $this.css("pointer-events", "none"); // disable clicks
+    const urlParams=new URLSearchParams(window.location.search);
+    const email=urlParams.get('email');
+    let code = $('#code').val().trim();
+
+    // only numbers, exactly 6 digits
+    let codePattern = /^\d{6}$/;
+
+    if (!codePattern.test(code)) {
+        alert('Code must be exactly 6 digits (numbers only).');
+        $this.text("Verify");
+        $this.css("pointer-events", "auto");
+        return;
+    }
+
+
+    $.ajax({
+        url: forgotCodeVerify,
+        data: {
+            'code':code,
+            'email':email
+        },
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                // console.log(response);
+                alert(response.message);
+                window.location.href = response.redirect;
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("Verify");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor verify ajax");
+            $this.text("Verify");
+                $this.css("pointer-events", "auto");
+        }
+    });
+});
+// Resend code
+
+$('.forgotResend').on('click',function(e){
+    e.preventDefault();
+    if (resendCount >= maxResend) {
+        alert("You can only resend the code 4 times.");
+        return;
+    }
+
+    let $this = $('.forgotResend');
+        $this.text('Sending...');
+        $this.css("pointer-events", "none");
+    const urlParams=new URLSearchParams(window.location.search);
+    const email=urlParams.get('email');
+    $.ajax({
+        url: forgotCodeVerifyResend,
+        data: {
+            'email':email
+        },
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                $this.text('Sent');
+                resendCount++;
+                alert(response.message + " Remaining: " + (maxResend - resendCount));
+                startResendTimer(60);
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("resend code");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            $this.text("Resend code");
+            $this.css("pointer-events", "auto");
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor verify resend code ajax");
+        }
+    });
+
+});
+
+// Update Password
+
+$('#newPassword').on('submit',function(e){
+    e.preventDefault();
+    const urlParams=new URLSearchParams(window.location.search);
+    const email=urlParams.get('email');
+    
+    let $this = $('.newPassword');
+        $this.text('Updating...');
+        $this.css("pointer-events", "none");
+    let password = $('.password').val().trim();
+    let confirmPassword = $('.confirmPassword').val().trim();
+
+    let passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{7,}$/;
+    // 1. Check if empty
+    if (password === '' || confirmPassword === '') {
+        alert('Please fill in both password fields.');
+        return;
+    }
+    if (!passwordPattern.test(password)) {
+        alert('Password must be at least 7 characters, include 1 uppercase letter and 1 special character.');
+        return;
+    }
+
+    // 3. Check match
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+    $.ajax({
+        url: newPassword,
+        data: {
+            'email':email,
+            'password':password
+        },
+        method: "post",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 'success') {
+                // console.log(response);
+                alert(response.message);
+                window.location.href = response.redirect;
+            }
+            else {
+                alert("Error : " + response.message);
+                $this.text("Change Password");
+                $this.css("pointer-events", "auto");
+            }
+        },
+        error: function (xhr, error) {
+            $this.text("Change Password");
+            $this.css("pointer-events", "auto");
+            console.debug(xhr);
+            console.debug(error);
+            console.log("Error in vendor verify Update ajax");
+        }
+    });
+
+});

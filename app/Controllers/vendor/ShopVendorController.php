@@ -30,6 +30,18 @@ class ShopVendorController extends BaseController
     {
         return view('ecommerce/vendor/user/register');
     }
+    public function forgotPassword():string
+    {
+        return view('ecommerce/vendor/user/forgotPassword');
+    }
+    public function resetVerify():string
+    {
+        return view('ecommerce/vendor/user/resetVerify');
+    }
+    public function newPassword():string
+    {
+        return view('ecommerce/vendor/user/newPassword');
+    }
     public function dashboard(): string
     {   
         
@@ -44,14 +56,14 @@ class ShopVendorController extends BaseController
             $data['logoImage']=$this->StoreLogo->find($logoID);
         }
         else{
-            $data['logoImage']=['logo_path'=>'public/vendor/plugins/images/users/default_logo.jpg'];
+            $data['logoImage']=['logo_path'=>'vendor/plugins/images/users/default_logo.jpg'];
         }
         $profileImg=$data['user']['profile_img_id'] ?? null;
         if($profileImg){
             $data['profileImage']=$this->StoreLogo->find($profileImg);
         }
         else{
-            $data['profileImage']=['profile_path'=>'public/vendor/plugins/images/users/genu.jpg'];
+            $data['profileImage']=['profile_path'=>'vendor/plugins/images/users/genu.jpg'];
         }
         
         return view('ecommerce/vendor/dashboard/profile',$data);
@@ -76,6 +88,7 @@ class ShopVendorController extends BaseController
     {   
         return view('ecommerce/vendor/dashboard/blank');
     }
+
     
     
 }

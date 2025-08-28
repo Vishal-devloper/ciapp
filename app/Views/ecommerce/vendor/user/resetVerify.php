@@ -2,14 +2,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin verify</title>
-  <link rel="stylesheet" href="<?php echo base_url('public/admin/css/user.css') ?>">
+  <title>Vendor verify</title>
+  <link rel="stylesheet" href="<?php echo base_url('public/vendor/css/user.css') ?>">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
 </head>
 <body>
   <div class="wrapper">
-    <form id="forgotVerifyForm" action="<?php echo site_url('admin/User/forgotCodeVerify') ?>" method="post">
+    <form id="forgotVerifyForm" action="<?php echo site_url('vendor/User/forgotCodeVerify') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Code Verification</h2>
         <div class="input-field padding-bottom">
@@ -24,9 +24,9 @@
     </form>
   </div>
   <script>
-    const forgotCodeVerify ="<?= site_url('admin/User/forgotCodeVerify') ?>";
-    const forgotCodeVerifyResend ="<?= site_url('admin/User/forgotCodeVerifyResend') ?>";
+    const forgotCodeVerify ="<?= site_url('vendor/User/forgotCodeVerify') ?>";
+    const forgotCodeVerifyResend ="<?= site_url('vendor/User/forgotCodeVerifyResend') ?>";
   </script>
-  <script src="<?= base_url('public/admin/js/validation.js') ?>"></script>
+  <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>
 </body>
 </html>
