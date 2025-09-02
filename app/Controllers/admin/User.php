@@ -1,6 +1,5 @@
 <?php
 namespace App\Controllers\admin;
-
 use App\Controllers\BaseController;
 use App\Models\admin\UserModel;
 use App\Models\admin\UserVerifyModel;
