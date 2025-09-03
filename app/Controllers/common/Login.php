@@ -42,6 +42,12 @@ class Login extends BaseController
 
             // ✅ Return JWT + success
             $token = getJWTForUser($admin['id'], $admin['email'], $admin['role']);
+            $session=session();
+            $session->regenerate(true);
+            $session->set([
+                'id'=>$admin['id'],
+                'token'=>$token
+            ]);
             return $this->response->setJSON([
                 'status'  => 'success',
                 'message' => 'Admin login successful.',
@@ -61,9 +67,15 @@ class Login extends BaseController
                 ]);
             }
 
-
+            
             // ✅ Return JWT + success
             $token = getJWTForUser($vendor['id'], $vendor['email'], $vendor['role']);
+            $session=session();
+            $session->regenerate(true);
+            $session->set([
+                'id'=>$vendor['id'],
+                'token'=>$token
+            ]);
             return $this->response->setJSON([
                 'status'  => 'success',
                 'message' => 'Vendor login successful.',

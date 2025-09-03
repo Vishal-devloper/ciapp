@@ -1,4 +1,4 @@
-<script src="<?= base_url('public/admin/plugins/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?= base_url('public/admin/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('public/admin/js/app-style-switcher.js') ?>"></script>

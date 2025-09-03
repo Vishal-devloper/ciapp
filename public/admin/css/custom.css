@@ -71,3 +71,7 @@
   stroke-dashoffset: -125px;
  }
 }
+
+.dataTables_length>label>select{
+    width: 50px !important;
+}

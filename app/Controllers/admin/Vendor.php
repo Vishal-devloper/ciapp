@@ -20,11 +20,58 @@ class Vendor extends BaseController
     }
     public function getVendors()
     {
-        $users = $this->VendorModel->findAll();
+        $request = service('request');
 
-        return $this->response->setJSON([
-            "data" => $users
-        ]);
+    $draw   = $request->getVar('draw');
+    $start  = $request->getVar('start');
+    $length = $request->getVar('length');
+    $search = $request->getVar('search')['value'];
+        $order   = $request->getVar('order');
+    $columns = $request->getVar('columns');
+    // Total records
+    $totalRecords = $this->VendorModel->countAllResults(false);
+
+    // Filtering
+    if (!empty($search)) {
+        $this->VendorModel->groupStart()
+            ->like('name', $search)
+            ->orLike('email', $search)
+            ->orLike('phone', $search)
+            ->orLike('store_name', $search)
+            ->groupEnd();
+    }
+
+    $recordsFiltered = $this->VendorModel->countAllResults(false);
+    if (!empty($order)) {
+        $colIndex = $order[0]['column'];          // column index
+        $colName  = $columns[$colIndex]['data'];  // column name
+        $dir      = $order[0]['dir'];             // asc or desc
+        $this->VendorModel->orderBy($colName, $dir);
+    } else {
+        // Default sort by ID DESC
+        $this->VendorModel->orderBy('id', 'DESC');
+    }
+    // Pagination
+    $vendors = $this->VendorModel->findAll($length, $start);
+
+    $data = [];
+    foreach ($vendors as $row) {
+        $data[] = [
+            "id"         => $row['id'],
+            "name"       => $row['name'],
+            "email"      => $row['email'],
+            "phone"      => $row['phone'],
+            "store_name" => $row['store_name'],
+            "status"     => $row['status']
+        ];
+    }
+
+    return $this->response->setJSON([
+        "draw"            => intval($draw),
+        "recordsTotal"    => $totalRecords,
+        "recordsFiltered" => $recordsFiltered,
+        "data"            => $data
+    ]);
     }
 
 

@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form id="loginForm" action="<?php echo site_url('vendor/User/ajaxLogin') ?>" method="post">
+    <form id="loginForm" action="<?php echo site_url('common/Login/ajaxLogin') ?>" method="post">
       <?= csrf_field() ?>
       <h2>Vendor Login</h2>
         <div class="input-field">
@@ -34,7 +34,7 @@
     </form>
   </div>
   <script>
-    const ajaxRequestUrlLogin ="<?= site_url('vendor/User/ajaxLogin') ?>";
+    const ajaxRequestUrlLogin ="<?= site_url('common/Login/ajaxLogin') ?>";
   </script>
   <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>
 </body>

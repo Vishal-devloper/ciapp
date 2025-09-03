@@ -82,7 +82,7 @@
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="<?= base_url('admin/profile') ?>">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                                <img src="<?= base_url('public/admin/plugins/images/users/varun.jpg') ?>" alt="user-img" width="36" class="img-circle">
                             </a>
                         </li>
                         <!-- ============================================================== -->
@@ -220,7 +220,23 @@
           { data: "id" },
           { data: "name" },
           { data: "email" },
-          { data: "phone" }
+          { data: "phone" },
+          {data:"store_name"},
+          {data:"status",
+            render: function (data, type, row) {
+        let pending = data == 'pending' ? "selected" : "";
+        let approved = data == 'approved' ? "selected" : "";
+        let rejected = data == 'rejected' ? "selected" : "";
+
+        return `
+            <select class="form-select status-select" data-id="${row.id}">
+                <option value="pending" ${pending}>Pending</option>
+                <option value="approved" ${approved}>Approved</option>
+                <option value="rejected" ${rejected}>Rejected</option>
+            </select>
+        `;
+          }
+        }
         ],
         order: [[0, "asc"]] // default sort by first column (ID)
       });

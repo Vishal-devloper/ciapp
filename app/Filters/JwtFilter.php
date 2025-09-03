@@ -14,25 +14,35 @@ class JwtFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $authHeader = $request->getHeaderLine('Authorization');
-        
-        if (!$authHeader) {
-            return Services::response()->setJSON(['status' => 'error', 'message' => 'Token required'])->setStatusCode(401);
-        }
+        $session = session();
 
         $token = null;
-        if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+
+        // 1️⃣ Check Authorization header
+        if ($authHeader && preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
             $token = $matches[1];
         }
 
+        // 2️⃣ Fallback: Check session storage
+        if (!$token && $session->has('token')) {
+            $token = $session->get('token');
+        }
+
+        // 3️⃣ Still no token? Block request
         if (!$token) {
-            return Services::response()->setJSON(['status' => 'error', 'message' => 'Token not found'])->setStatusCode(401);
+            return Services::response()
+                ->setJSON(['status' => 'error', 'message' => 'Token required'])
+                ->setStatusCode(401);
         }
 
         try {
             $decoded = JWT::decode($token, new Key(getenv('JWT_SECRET'), 'HS256'));
-            $request->user = $decoded->data; // attach user data to request
+            // Attach user data so controllers can use it
+            $request->user = $decoded->data;
         } catch (\Exception $e) {
-            return Services::response()->setJSON(['status' => 'error', 'message' => 'Invalid token: ' . $e->getMessage()])->setStatusCode(401);
+            return Services::response()
+                ->setJSON(['status' => 'error', 'message' => 'Invalid token: ' . $e->getMessage()])
+                ->setStatusCode(401);
         }
     }
 

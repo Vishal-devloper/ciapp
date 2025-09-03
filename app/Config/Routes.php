@@ -35,7 +35,7 @@ $routes->post('admin/Vendor/getVendors', 'admin\Vendor::getVendors');
 
 
 // Vendor
-$routes->group('admin', ['filter' => 'jwt'], function ($routes) {
+$routes->group('vendor', ['filter' => 'jwt'], function ($routes) {
     $routes->get('dashboard', 'vendor\ShopVendorController::dashboard');
     $routes->get('profile', 'vendor\ShopVendorController::profile');
     $routes->get('error', 'vendor\ShopVendorController::error');

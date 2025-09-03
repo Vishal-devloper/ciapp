@@ -72,7 +72,7 @@ $('#loginForm').on("submit", function (e) {
         success: function (response) {
             if (response.status === 'success') {
                 
-                // window.location.href = response.redirect;
+                window.location.href = response.redirect;
                 
             }
             else {
