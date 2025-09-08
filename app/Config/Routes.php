@@ -32,6 +32,7 @@ $routes->post('admin/User/ajaxUserUpdate', 'admin\User::ajaxUserUpdate');
 $routes->post('admin/User/newPassword', 'admin\User::newPassword');
 // Vendors data
 $routes->post('admin/Vendor/getVendors', 'admin\Vendor::getVendors');
+$routes->post('admin/Vendor/vendorUpdate', 'admin\Vendor::vendorUpdate');
 
 
 // Vendor

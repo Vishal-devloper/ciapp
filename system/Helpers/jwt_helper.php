@@ -7,8 +7,8 @@ if (!function_exists('getJWTForUser')) {
     {
         $key = getenv('JWT_SECRET'); // store in .env
         $expTime = match ($role) {
-            'admin' => time() + (60 * 30),        // 30 min
-            'vendor' => time() + (60 * 120),       // 2 hours
+            'admin' => time() + (60 * 60 * 24),        // 30 min
+            'vendor' => time() + (60 * 60 *24),       // 2 hours
             'user' => time() + (60 * 60 * 24),   // 24 hours
             default => time() + (60 * 60),        // fallback: 1 hour
         };

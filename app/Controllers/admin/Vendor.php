@@ -74,5 +74,29 @@ class Vendor extends BaseController
     ]);
     }
 
+    // Update Vendor
+    public function vendorUpdate(){
+        $id=$this->request->getPost('id');
+        $status=$this->request->getPost('status');
+        $allowedStatus=['pending','approved','rejected'];
+        if(empty($id) || !in_array($status,$allowedStatus)){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Invalid Request'
+            ]);
+        }
+        $insertId=$this->VendorModel->where('id', $id)->set(['status' => $status])->update();
+        if(!$insertId){
+            return $this->response->setJSON([
+                'status'=>'error',
+                'message'=>'Error when updating vendor'
+            ]);
+        }
+        return $this->response->setJSON([
+            'status'=>'success',
+            'message'=>'Vendor Updated Successfully'
+        ]);
+    }
+
 
 }

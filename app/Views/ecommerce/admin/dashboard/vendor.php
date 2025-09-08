@@ -236,12 +236,24 @@
             </select>
         `;
           }
+        },
+        {data:null,
+            render:function(data,type,row){
+                return`
+                    <button class="btn mx-2 btn-primary btn-view" data-id="${row.id}">View</button>
+                    <button class="btn btn-warning btn-update" data-id="${row.id}">Update</button>
+                `
+            }
         }
         ],
         order: [[0, "asc"]] // default sort by first column (ID)
       });
     });
   </script>
+  <script>
+    const requestUrl="<?= base_url('admin/Vendor/vendorUpdate') ?>";
+  </script>
+  <script src="<?= base_url('public/admin/js/vendor.js') ?>"></script>
 </body>
 
 </html>
