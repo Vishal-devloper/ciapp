@@ -195,7 +195,8 @@ class User extends BaseController
             'password' => $user['password'],
             'phone' => $user['phone'],
             'store_name' => $user['store_name'],
-            'created_at' => date('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+            'role'=>'vendor'
 
         ];
         $this->UserModel->insert($newVendor);
@@ -269,40 +270,7 @@ class User extends BaseController
         ]);
     }
 
-    public function ajaxLogin()
-    {
-        $emailAddr = $this->request->getPost('email');
-        $userData = $this->UserModel->where('email', $emailAddr)->first();
-
-        if (!$userData) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Email not registered. Please register.'
-            ]);
-        }
-
-        if (!password_verify($this->request->getPost('password'), $userData['password'])) {
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'Wrong password.'
-            ]);
-        }
-        $session = session();
-        $session->regenerate(true);
-        // Set session
-        $session->set([
-            'id' => $userData['id'],
-            'name' => $userData['name'],
-            'email' => $userData['email'],
-            'isVendorLogin' => true
-        ]);
-
-        return $this->response->setJSON([
-            'status' => 'success',
-            'message' => 'Login successful.',
-            'redirect' => site_url('vendor/dashboard')
-        ]);
-    }
+    
     public function ajaxUserUpdate()
     {
 

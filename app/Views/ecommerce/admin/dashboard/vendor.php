@@ -224,15 +224,15 @@
           {data:"store_name"},
           {data:"status",
             render: function (data, type, row) {
-        let pending = data == 'pending' ? "selected" : "";
-        let approved = data == 'approved' ? "selected" : "";
-        let rejected = data == 'rejected' ? "selected" : "";
+        let active = data == 'active' ? "selected" : "";
+        let inactive = data == 'inactive' ? "selected" : "";
+        let banned = data == 'banned' ? "selected" : "";
 
         return `
             <select class="form-select status-select" data-id="${row.id}">
-                <option value="pending" ${pending}>Pending</option>
-                <option value="approved" ${approved}>Approved</option>
-                <option value="rejected" ${rejected}>Rejected</option>
+                <option value="active" ${active}>Active</option>
+                <option value="inactive" ${inactive}>Inactive</option>
+                <option value="banned" ${banned}>Banned</option>
             </select>
         `;
           }

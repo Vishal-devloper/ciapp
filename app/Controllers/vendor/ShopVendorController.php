@@ -50,7 +50,7 @@ class ShopVendorController extends BaseController
     public function profile()
     {   
         $session=session();
-        $data['user']=$this->UserModel->find($session->get('id'));
+        $data['user']=$this->UserModel->find($session->get('vendor_id'));
         $logoID=$data['user']['store_logo_id'] ?? null;
         if($logoID){
             $data['logoImage']=$this->StoreLogo->find($logoID);

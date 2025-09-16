@@ -3,19 +3,18 @@ namespace App\Controllers\admin;
 
 use App\Controllers\BaseController;
 use App\Models\admin\UserModel;
-use App\Models\admin\VendorModel;
+
 
 
 class ShopAdminController extends BaseController
 {
     
     protected $UserModel;
-    protected $VendorModel;
+    
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
-        $this->VendorModel = new VendorModel();
         helper(['form', 'url']);
     }
     
@@ -51,7 +50,7 @@ class ShopAdminController extends BaseController
     public function profile(): string
     {   
         $session=session();
-        $data['user']=$this->UserModel->find($session->get('id'));
+        $data['user']=$this->UserModel->find($session->get('admin_id'));
         return view('ecommerce/admin/dashboard/profile',$data);
     }
     public function map_google(): string
@@ -63,8 +62,8 @@ class ShopAdminController extends BaseController
         return view('ecommerce/admin/dashboard/error');
     }
     public function vendor(): string
-    {   $data['vendors']=$this->VendorModel->findAll();
-        return view('ecommerce/admin/dashboard/vendor',$data);
+    {
+        return view('ecommerce/admin/dashboard/vendor');
     }
     public function fontawesome(): string
     {   
