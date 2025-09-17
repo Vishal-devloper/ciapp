@@ -68,3 +68,8 @@ $routes->post('vendor/User/forgotCodeVerifyResend', 'vendor\User::forgotCodeVeri
 // Login 
 
 $routes->post('common/Login/ajaxLogin', 'common\Login::ajaxLogin');
+
+
+
+// User
+$routes->get('/user/home', 'user\ShopUserController::index');
