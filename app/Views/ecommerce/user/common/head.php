@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<?= base_url('public/user/css/vendor/sal.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/user/css/vendor/magnific-popup.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/user/css/vendor/base.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/user/css/custom.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/user/css/style.min.css') ?>">
 
 </head>

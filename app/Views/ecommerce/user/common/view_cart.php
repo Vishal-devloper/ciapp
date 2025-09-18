@@ -1,219 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
-
-<?= view('ecommerce/user/common/head') ?>
-
-
-<body class="sticky-header">
-    
-    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
-    
-    <!-- Start Header -->
-    <header class="header axil-header header-style-5">
-        
-        <?= view('ecommerce/user/common/nav') ?>
-        
-    </header>
-    <!-- End Header -->
-
-    <section class="error-page onepage-screen-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="content" data-sal="slide-up" data-sal-duration="800" data-sal-delay="400">
-                        <span class="title-highlighter highlighter-secondary"> <i class="fal fa-exclamation-circle"></i> Oops! Somthing's missing.</span>
-                        <h1 class="title">Page not found</h1>
-                        <p>It seems like we dont find what you searched. The page you were looking for doesn't exist, isn't available loading incorrectly.</p>
-                        <a href="index.html" class="axil-btn btn-bg-secondary right-icon">Back To Home <i class="fal fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="thumbnail" data-sal="zoom-in" data-sal-duration="800" data-sal-delay="400">
-                        <img src="assets/images/others/404.png" alt="404">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="service-area">
-        <div class="container">
-            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="assets/images/icons/service1.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="assets/images/icons/service2.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="assets/images/icons/service3.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="assets/images/icons/service4.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Start Footer Area  -->
-    <footer class="axil-footer-area footer-style-2">
-        <!-- Start Footer Top Area  -->
-        <div class="footer-top separator-top">
-            <div class="container">
-                <div class="row">
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Support</h5>
-                            <!-- <div class="logo mb--30">
-                            <a href="index.html">
-                                <img class="light-logo" src="assets/images/logo/logo.png" alt="Logo Images">
-                            </a>
-                        </div> -->
-                            <div class="inner">
-                                <p>685 Market Street, <br>
-                                Las Vegas, LA 95820, <br>
-                                United States.
-                                </p>
-                                <ul class="support-list-item">
-                                    <li><a href="mailto:example@domain.com"><i class="fal fa-envelope-open"></i> example@domain.com</a></li>
-                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+01) 850-315-5862</a></li>
-                                    <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Account</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="sign-up.html">Login / Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Quick Link</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Download App</h5>
-                            <div class="inner">
-                                <span>Save $3 With App & New User only</span>
-                                <div class="download-btn-group">
-                                    <div class="qr-code">
-                                        <img src="assets/images/others/qr.png" alt="Axilthemes">
-                                    </div>
-                                    <div class="app-link">
-                                        <a href="#">
-                                            <img src="assets/images/others/app-store.png" alt="App Store">
-                                        </a>
-                                        <a href="#">
-                                            <img src="assets/images/others/play-store.png" alt="Play Store">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Top Area  -->
-        <!-- Start Copyright Area  -->
-        <div class="copyright-area copyright-default separator-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-4">
-                        <div class="social-share">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-discord"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-12">
-                        <div class="copyright-left d-flex flex-wrap justify-content-center">
-                            <ul class="quick-link">
-                                <li>© 2025. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-12">
-                        <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
-                            <span class="card-text">Accept For</span>
-                            <ul class="payment-icons-bottom quick-link">
-                                <li><img src="assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
-                                <li><img src="assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
-                                <li><img src="assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright Area  -->
-    </footer>
-    <!-- End Footer Area  -->
-
-    <!-- Product Quick View Modal Start -->
+<!-- Product Quick View Modal Start -->
     <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -228,34 +13,34 @@
                                     <div class="col-lg-10 order-lg-2">
                                         <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
                                             <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-01.png" alt="Product Images">
+                                                <img src="<?= base_url('public/user/images/product/product-big-01.png')?>" alt="Product Images">
                                                 <div class="label-block label-right">
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-01.png" class="popup-zoom">
+                                                    <a href="assets/images/product/product-big-01.png')?>" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-02.png" alt="Product Images">
+                                                <img src="<?= base_url('public/user/images/product/product-big-02.png')?>" alt="Product Images">
                                                 <div class="label-block label-right">
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-02.png" class="popup-zoom">
+                                                    <a href="assets/images/product/product-big-02.png')?>" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-03.png" alt="Product Images">
+                                                <img src="<?= base_url('public/user/images/product/product-big-03.png')?>" alt="Product Images">
                                                 <div class="label-block label-right">
                                                     <div class="product-badget">20% OFF</div>
                                                 </div>
                                                 <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-03.png" class="popup-zoom">
+                                                    <a href="assets/images/product/product-big-03.png')?>" class="popup-zoom">
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -265,13 +50,13 @@
                                     <div class="col-lg-2 order-lg-1">
                                         <div class="product-small-thumb small-thumb-wrapper">
                                             <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-08.png" alt="thumb image">
+                                                <img src="<?= base_url('public/user/images/product/product-thumb/thumb-08.png')?>" alt="thumb image">
                                             </div>
                                             <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-07.png" alt="thumb image">
+                                                <img src="<?= base_url('public/user/images/product/product-thumb/thumb-07.png')?>" alt="thumb image">
                                             </div>
                                             <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-09.png" alt="thumb image">
+                                                <img src="<?= base_url('public/user/images/product/product-thumb/thumb-09.png')?>" alt="thumb image">
                                             </div>
                                         </div>
                                     </div>
@@ -282,7 +67,7 @@
                                     <div class="inner">
                                         <div class="product-rating">
                                             <div class="star-rating">
-                                                <img src="assets/images/icons/rate.png" alt="Rate Images">
+                                                <img src="<?= base_url('public/user/images/icons/rate.png')?>" alt="Rate Images">
                                             </div>
                                             <div class="review-link">
                                                 <a href="#">(<span>1</span> customer reviews)</a>
@@ -377,7 +162,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+                                <img src="<?= base_url('public/user/images/product/electric/product-09.png')?>" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">
@@ -405,7 +190,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+                                <img src="<?= base_url('public/user/images/product/electric/product-09.png')?>" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">
@@ -447,7 +232,7 @@
                 <ul class="cart-item-list">
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product.html"><img src="assets/images/product/electric/product-01.png" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product.html"><img src="<?= base_url('public/user/images/product/electric/product-01.png')?>" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -470,7 +255,7 @@
                     </li>
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product-2.html"><img src="assets/images/product/electric/product-02.png" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product-2.html"><img src="<?= base_url('public/user/images/product/electric/product-02.png')?>" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -493,7 +278,7 @@
                     </li>
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product-3.html"><img src="assets/images/product/electric/product-03.png" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product-3.html"><img src="<?= base_url('public/user/images/product/electric/product-03.png')?>" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -528,34 +313,3 @@
             </div>
         </div>
     </div>
-
-    <!-- JS
-============================================ -->
-    <!-- Modernizer JS -->
-    <script src="assets/js/vendor/modernizr.min.js"></script>
-    <!-- jQuery JS -->
-    <script src="assets/js/vendor/jquery.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/js.cookie.js"></script>
-    <!-- <script src="assets/js/vendor/jquery.style.switcher.js"></script> -->
-    <script src="assets/js/vendor/jquery-ui.min.js"></script>
-    <script src="assets/js/vendor/jquery.ui.touch-punch.min.js"></script>
-    <script src="assets/js/vendor/jquery.countdown.min.js"></script>
-    <script src="assets/js/vendor/sal.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/vendor/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
-    <script src="assets/js/vendor/counterup.js"></script>
-    <script src="assets/js/vendor/waypoints.min.js"></script>
-
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-
-</body>
-
-
-<!-- Mirrored from new.axilthemes.com/demo/template/etrade/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Sep 2025 10:47:51 GMT -->
-</html>

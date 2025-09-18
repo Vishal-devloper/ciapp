@@ -73,3 +73,12 @@ $routes->post('common/Login/ajaxLogin', 'common\Login::ajaxLogin');
 
 // User
 $routes->get('/user/home', 'user\ShopUserController::index');
+$routes->get('/user/404', 'user\ShopUserController::not_found');
+$routes->get('/user/about-us', 'user\ShopUserController::about_us');
+$routes->get('/user/cart', 'user\ShopUserController::cart');
+$routes->get('/user/checkout', 'user\ShopUserController::checkout');
+$routes->get('/user/contact', 'user\ShopUserController::contact');
+$routes->get('/user/wishlist', 'user\ShopUserController::wishlist');
+$routes->get('/user/my-account', 'user\ShopUserController::my_account');
+$routes->get('/user/privacy-policy', 'user\ShopUserController::privacy_policy');
+$routes->get('/user/terms-of-service', 'user\ShopUserController::terms_of_service');
