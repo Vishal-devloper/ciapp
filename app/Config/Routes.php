@@ -82,3 +82,10 @@ $routes->get('/user/wishlist', 'user\ShopUserController::wishlist');
 $routes->get('/user/my-account', 'user\ShopUserController::my_account');
 $routes->get('/user/privacy-policy', 'user\ShopUserController::privacy_policy');
 $routes->get('/user/terms-of-service', 'user\ShopUserController::terms_of_service');
+$routes->get('/user/blog', 'user\ShopUserController::blog');
+$routes->get('/user/forgot-password', 'user\ShopUserController::forgot_password');
+$routes->get('/user/login', 'user\ShopUserController::login');
+$routes->get('/user/register', 'user\ShopUserController::register');
+$routes->get('/user/shop', 'user\ShopUserController::shop');
+$routes->get('/user/single-product', 'user\ShopUserController::single_product');
+

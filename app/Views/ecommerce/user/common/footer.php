@@ -86,11 +86,10 @@
                             <h5 class="widget-title">Account</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="sign-up.html">Login / Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="<?= base_url('user/my-account') ?>">My Account</a></li>
+                                    <li><a href="<?= base_url('user/cart') ?>">Cart</a></li>
+                                    <li><a href="<?= base_url('user/wishlist') ?>">Wishlist</a></li>
+                                    <li><a href="<?= base_url('user/shop') ?>">Shop</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -102,11 +101,11 @@
                             <h5 class="widget-title">Quick Link</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="<?= base_url('user/privacy-policy') ?>">Privacy Policy</a></li>
+                                    <li><a href="<?= base_url('user/terms-of-service') ?>">Terms Of Use</a></li>
+                                    <li><a href="<?= base_url('user/faq') ?>">FAQ</a></li>
+                                    <li><a href="<?= base_url('user/contact') ?>">Contact</a></li>
+                                    
                                 </ul>
                             </div>
                         </div>

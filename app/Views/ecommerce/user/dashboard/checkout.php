@@ -2,7 +2,19 @@
 <html class="no-js" lang="en">
 
 
-<?= view('ecommerce/user/common/head') ?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eTrade Checkout</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/user/images/favicon.png') ?>">
+
+    <?= view('ecommerce/user/common/head') ?>
+    
+</head>
 <body class="sticky-header">
     
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
@@ -256,6 +268,4 @@
 
 </body>
 
-
-<!-- Mirrored from new.axilthemes.com/demo/template/etrade/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Sep 2025 10:47:50 GMT -->
 </html>

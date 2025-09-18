@@ -1,13 +1,23 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<?= view('ecommerce/user/common/head') ?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eTrade Cart</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/user/images/favicon.png') ?>">
+
+    <?= view('ecommerce/user/common/head') ?>
+    
+</head>
 
 
 <body class="sticky-header">
-    <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+    
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
     <!-- Start Header -->
     <header class="header axil-header header-style-5">
@@ -152,6 +162,4 @@
 
 </body>
 
-
-<!-- Mirrored from new.axilthemes.com/demo/template/etrade/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Sep 2025 10:47:49 GMT -->
 </html>

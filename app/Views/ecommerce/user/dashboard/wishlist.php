@@ -2,7 +2,19 @@
 <html class="no-js" lang="en">
 
 
-<?= view('ecommerce/user/common/head') ?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eTrade Wishlist</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/user/images/favicon.png') ?>">
+
+    <?= view('ecommerce/user/common/head') ?>
+    
+</head>
 
 <body class="sticky-header">
     

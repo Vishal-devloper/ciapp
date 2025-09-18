@@ -56,5 +56,32 @@ class ShopUserController extends BaseController
     {
         return view('ecommerce/user/dashboard/wishlist');
     }
-    
+    public function blog():string
+    {
+        return view('ecommerce/user/dashboard/blog');
+    }
+    public function login():string
+    {
+        return view('ecommerce/user/dashboard/login');
+    }
+    public function register():string
+    {
+        return view('ecommerce/user/dashboard/register');
+    }
+    public function forgot_password():string
+    {
+        return view('ecommerce/user/dashboard/forgot_password');
+    }
+    public function reset_password():string
+    {
+        return view('ecommerce/user/dashboard/reset_password');
+    }
+    public function shop():string
+    {
+        return view('ecommerce/user/dashboard/shop');
+    }
+    public function single_product():string
+    {
+        return view('ecommerce/user/dashboard/single_product');
+    }
 }

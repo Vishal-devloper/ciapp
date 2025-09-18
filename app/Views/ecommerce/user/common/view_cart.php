@@ -307,8 +307,8 @@
                     <span class="subtotal-amount">$610.00</span>
                 </h3>
                 <div class="group-btn">
-                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+                    <a href="<?= base_url('user/cart') ?>" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+                    <a href="<?= base_url('user/checkout') ?>" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
                 </div>
             </div>
         </div>
