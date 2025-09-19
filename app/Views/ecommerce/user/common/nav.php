@@ -23,6 +23,21 @@
                             <a href="<?= base_url('user/home')?>">Home</a>
                         </li>
                         <li class="menu-item-has-children">
+                                    <a href="#">Categories</a>
+                                    <ul class="axil-submenu">
+                                        <li><a href="shop-sidebar.html">Mobiles & Tablets</a></li>
+                                        <li><a href="shop.html">Laptops & Computers</a></li>
+                                        <li><a href="single-product.html">T.V & Home Entertainment</a></li>
+                                        <li><a href="single-product-2.html">Audio & Wearables</a></li>
+                                        <li><a href="single-product-3.html">Home Appliances</a></li>
+                                        <li><a href="single-product-4.html">Cameras & Photography</a></li>
+                                        <li><a href="single-product-5.html">Gaming & Consoles</a></li>
+                                        <li><a href="single-product-6.html">Smart Home & IoT</a></li>
+                                        <li><a href="single-product-7.html">Networking & Storage</a></li>
+                                        <li><a href="single-product-8.html">Accessories & Essentials</a></li>
+                                    </ul>
+                                </li>
+                        <li class="menu-item-has-children">
                             <a href="<?= base_url('user/shop') ?>">Shop</a>
                             
                         </li>
