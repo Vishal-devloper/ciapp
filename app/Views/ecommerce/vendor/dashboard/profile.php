@@ -296,7 +296,7 @@
      <script>
         const ajaxUserUpdateUrl='<?= base_url('vendor/User/ajaxUserUpdate') ?>';
      </script>
-     <script src="<?= base_url('vendor/js/validation.js') ?>"></script>
+     <script src="<?= base_url('public/vendor/js/validation.js') ?>"></script>
     <?= view('ecommerce/vendor/common/vendor_foot') ?>
 </body>
 

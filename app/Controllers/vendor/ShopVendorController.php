@@ -3,18 +3,18 @@ namespace App\Controllers\vendor;
 
 use App\Controllers\BaseController;
 use App\Models\vendor\UserModel; 
-use App\Models\vendor\StoreLogo; 
+use App\Models\vendor\ProfileImg; 
 
 class ShopVendorController extends BaseController
 {
     protected $UserModel;
-    protected $StoreLogo;
+    protected $ProfileImg;
 
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
-        $this->StoreLogo = new StoreLogo();
+        $this->ProfileImg = new ProfileImg();
         helper(['form', 'url']);
     }
     
@@ -53,14 +53,14 @@ class ShopVendorController extends BaseController
         $data['user']=$this->UserModel->find($session->get('vendor_id'));
         $logoID=$data['user']['store_logo_id'] ?? null;
         if($logoID){
-            $data['logoImage']=$this->StoreLogo->find($logoID);
+            $data['logoImage']=$this->ProfileImg->find($logoID);
         }
         else{
             $data['logoImage']=['logo_path'=>'vendor/plugins/images/users/default_logo.jpg'];
         }
         $profileImg=$data['user']['profile_img_id'] ?? null;
         if($profileImg){
-            $data['profileImage']=$this->StoreLogo->find($profileImg);
+            $data['profileImage']=$this->ProfileImg->find($profileImg);
         }
         else{
             $data['profileImage']=['profile_path'=>'vendor/plugins/images/users/genu.jpg'];

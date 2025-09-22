@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\admin;
+namespace App\Models\vendor;
 
 use CodeIgniter\Model;
 
@@ -13,11 +13,10 @@ class UserModel extends Model
     'password',
     'phone',
     'address',
-    'profile_img_id',
+    'image_id',
     'role',           // new field to identify admin/vendor/user
     'status',
-    'store_name',     // vendor-specific
-    'store_logo_id',  // vendor-specific
+    'store_name',     // vendor-specific // vendor-specific
     'created_at',
     'updated_at'
 ];

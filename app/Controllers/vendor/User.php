@@ -4,21 +4,21 @@ namespace App\Controllers\vendor;
 use App\Controllers\BaseController;
 use App\Models\vendor\UserModel;
 use App\Models\vendor\UserVerifyModel;
-use App\Models\vendor\StoreLogo;
+use App\Models\vendor\ProfileImg;
 use App\Models\vendor\PasswordReset;
 
 class User extends BaseController
 {
     protected $UserModel;
     protected $UserVerifyModel;
-    protected $StoreLogo;
+    protected $ProfileImg;
     protected $PasswordReset;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
         $this->UserVerifyModel = new UserVerifyModel();
-        $this->StoreLogo = new StoreLogo();
+        $this->ProfileImg = new ProfileImg();
         $this->PasswordReset = new PasswordReset();
         helper(['form', 'url']);
     }
@@ -196,7 +196,7 @@ class User extends BaseController
             'phone' => $user['phone'],
             'store_name' => $user['store_name'],
             'created_at' => date('Y-m-d H:i:s'),
-            'role'=>'vendor'
+            'role' => 'vendor'
 
         ];
         $this->UserModel->insert($newVendor);
@@ -270,7 +270,7 @@ class User extends BaseController
         ]);
     }
 
-    
+
     public function ajaxUserUpdate()
     {
 
@@ -289,7 +289,8 @@ class User extends BaseController
 
 
         if (empty($password) && empty($newPassword)) {
-            return $this->updateProfileWithoutPassword($userData);
+            $newPassword="";
+            return $this->updateProfileAll($userData,$newPassword);
         }
 
 
@@ -300,17 +301,61 @@ class User extends BaseController
             ]);
         }
 
-        return $this->updateProfileWithPassword($userData, $newPassword);
+        return $this->updateProfileAll($userData, $newPassword);
 
 
     }
 
-    private function updateProfileWithoutPassword($userData)
+    private function handleImageUpload($file, $column, $userId, $imageId)
     {
-        $img = $this->request->getFile('vendorFile');           // Store logo
-        $profileImg = $this->request->getFile('vendorProfilePhoto');   // Profile photo
+        if ($file && $file->isValid() && !$file->hasMoved()) {
 
-        // Update basic fields first
+            $validationRule = [
+                $file->getName(true) => [
+                    'rules' => "is_image[{$file->getName(true)}]|mime_in[{$file->getName(true)},image/jpg,image/jpeg,image/png]|max_size[{$file->getName(true)},10240]",
+                    'errors' => [
+                        'is_image' => ucfirst($column) . ' must be an image',
+                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
+                        'max_size' => ucfirst($column) . ' size should not exceed 10MB',
+                    ],
+                ],
+            ];
+
+            if (!$this->validate($validationRule)) {
+                return [
+                    'status' => 'error',
+                    'message' => implode('<br>', $this->validator->getErrors())
+                ];
+            }
+
+            $newName = $file->getRandomName();
+            $file->move(FCPATH . 'uploads/profile', $newName);
+            $filePath = 'uploads/profile/' . $newName;
+
+            $oldImage = $this->ProfileImg->where('id', $imageId)->first();
+
+            if ($oldImage) {
+                // Delete old file if exists
+                if (!empty($oldImage[$column]) && file_exists(FCPATH . $oldImage[$column])) {
+                    unlink(FCPATH . $oldImage[$column]);
+                }
+                $this->ProfileImg->update($oldImage['id'], [$column => $filePath]);
+                return ['status' => 'success', 'id' => $oldImage['id'], 'path' => $filePath];
+            } else {
+                $id = $this->ProfileImg->insert([
+                    'user_id' => $userId,
+                    $column => $filePath,
+                    'created_at' => date('Y-m-d H:i:s')
+                ], true);
+                return ['status' => 'success', 'id' => $id, 'path' => $filePath];
+            }
+        }
+
+        return null;
+    }
+
+    private function updateProfileAll($userData, $newPassword)
+    {
         $updateData = [
             'name' => $this->request->getPost('name'),
             'phone' => $this->request->getPost('phone'),
@@ -319,287 +364,54 @@ class User extends BaseController
             'updated_at' => date('Y-m-d H:i:s')
         ];
 
-        /* -------------------------------------------
-           STORE LOGO UPLOAD
-        ------------------------------------------- */
-        if ($img && $img->isValid() && !$img->hasMoved()) {
-            $validationRule = [
-                'vendorFile' => [
-                    'rules' => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
-                    'errors' => [
-                        'is_image' => 'File must be an image',
-                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                        'max_size' => 'Image size should not exceed 10MB',
-                    ],
-                ],
-            ];
-
-            if (!$this->validate($validationRule)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => implode('<br>', $this->validator->getErrors())
-                ]);
-            }
-
-            
-            $newLogoName = $img->getRandomName();
-            $img->move(FCPATH . 'uploads/vendor/logo', $newLogoName);
-            $filePath = 'uploads/vendor/logo/' . $newLogoName;
-
-            
-            $oldLogo = $this->StoreLogo->where('vendor_id', $userData['id'])->first();
-
-            if ($oldLogo) {
-                
-                if (!empty($oldLogo['logo_path']) && file_exists(FCPATH . $oldLogo['logo_path'])) {
-                    unlink(FCPATH . $oldLogo['logo_path']);
-                }
-
-                
-                $this->StoreLogo->update($oldLogo['id'], [
-                    'logo_path' => $filePath
-                ]);
-                $logoId = $oldLogo['id'];
-            } else {
-                
-                $logoId = $this->StoreLogo->insert([
-                    'vendor_id' => $userData['id'],
-                    'logo_path' => $filePath,
-                    'created_at' => date('Y-m-d H:i:s')
-                ], true); 
-            }
-
-            // Update vendor table
-            $updateData['store_logo_id'] = $logoId;
+        if (!empty($newPassword)) {
+            $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
         }
 
-        /* -------------------------------------------
-           PROFILE PHOTO UPLOAD
-        ------------------------------------------- */
-        if ($profileImg && $profileImg->isValid() && !$profileImg->hasMoved()) {
-            $validationRuleProfile = [
-                'vendorProfilePhoto' => [
-                    'rules' => 'is_image[vendorProfilePhoto]|mime_in[vendorProfilePhoto,image/jpg,image/jpeg,image/png]|max_size[vendorProfilePhoto,10240]',
-                    'errors' => [
-                        'is_image' => 'Profile photo must be an image',
-                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                        'max_size' => 'Profile photo size should not exceed 10MB',
-                    ],
-                ],
-            ];
+        // Handle logo and profile photo
+        $logoResult = $this->handleImageUpload($this->request->getFile('vendorFile'), 'logo_path', $userData['id'], $userData['image_id']);
+        $profileResult = $this->handleImageUpload($this->request->getFile('vendorProfilePhoto'), 'profile_path', $userData['id'], $userData['image_id']);
 
-            if (!$this->validate($validationRuleProfile)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => implode('<br>', $this->validator->getErrors())
-                ]);
-            }
+        if ($logoResult)
+            $updateData['image_id'] = $logoResult['id'];
+        if ($profileResult)
+            $updateData['image_id'] = $profileResult['id'];
 
-            
-            $newProfileName = $profileImg->getRandomName();
-            $profileImg->move(FCPATH . 'uploads/vendor/logo', $newProfileName);
-            $filePath = 'uploads/vendor/logo/' . $newProfileName;
-
-            
-            $oldProfile = $this->StoreLogo->where('vendor_id', $userData['id'])->first();
-
-            if ($oldProfile) {
-                
-                if (!empty($oldProfile['profile_path']) && file_exists(FCPATH . $oldProfile['profile_path'])) {
-                    unlink(FCPATH . $oldProfile['profile_path']);
-                }
-
-                
-                $this->StoreLogo->update($oldProfile['id'], [
-                    'profile_path' => $filePath
-                ]);
-                $logoId = $oldProfile['id'];
-            } else {
-                
-                $logoId = $this->StoreLogo->insert([
-                    'vendor_id' => $userData['id'],
-                    'profile_path' => $filePath,
-                    'created_at' => date('Y-m-d H:i:s')
-                ], true); 
-            }
-
-            // Update vendor table
-            $updateData['profile_img_id'] = $logoId;
-
-        }
-
-        /* -------------------------------------------
-           FINAL UPDATE
-        ------------------------------------------- */
+        // Final update
         $update = $this->UserModel->update($userData['id'], $updateData);
-
         return $this->response->setJSON([
             'status' => $update ? 'success' : 'error',
             'message' => $update ? 'Profile updated successfully!' : 'Profile not updated. Try again later.'
         ]);
+
     }
-    private function updateProfileWithPassword($userData, $newPassword)
-    {
-        $img = $this->request->getFile('vendorFile');           // Store logo
-        $profileImg = $this->request->getFile('vendorProfilePhoto');   // Profile photo
-
-
-        $updateData = [
-            'name' => $this->request->getPost('name'),
-            'phone' => $this->request->getPost('phone'),
-            'store_name' => $this->request->getPost('store_name'),
-            'address' => $this->request->getPost('address'),
-            'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-            'updated_at' => date('Y-m-d H:i:s')
-        ];
-
-        /* -------------------------------------------
-           STORE LOGO UPLOAD  (mirrors WithoutPassword)
-        ------------------------------------------- */
-        if ($img && $img->isValid() && !$img->hasMoved()) {
-            $validationRule = [
-                'vendorFile' => [
-                    'rules' => 'is_image[vendorFile]|mime_in[vendorFile,image/jpg,image/jpeg,image/png]|max_size[vendorFile,10240]',
-                    'errors' => [
-                        'is_image' => 'File must be an image',
-                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                        'max_size' => 'Image size should not exceed 10MB',
-                    ],
-                ],
-            ];
-
-            if (!$this->validate($validationRule)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => implode('<br>', $this->validator->getErrors())
-                ]);
-            }
-
-            
-            $newLogoName = $img->getRandomName();
-            $img->move(FCPATH . 'uploads/vendor/logo', $newLogoName);
-            $filePath = 'uploads/vendor/logo/' . $newLogoName;
-
-            
-            $oldLogo = $this->StoreLogo->where('vendor_id', $userData['id'])->first();
-
-            if ($oldLogo) {
-                
-                if (!empty($oldLogo['logo_path']) && file_exists(FCPATH . $oldLogo['logo_path'])) {
-                    unlink(FCPATH . $oldLogo['logo_path']);
-                }
-
-                
-                $this->StoreLogo->update($oldLogo['id'], [
-                    'logo_path' => $filePath
-                ]);
-                $logoId = $oldLogo['id'];
-            } else {
-                
-                $logoId = $this->StoreLogo->insert([
-                    'vendor_id' => $userData['id'],
-                    'logo_path' => $filePath,
-                    'created_at' => date('Y-m-d H:i:s')
-                ], true); 
-            }
-
-            // Update vendor table
-            $updateData['store_logo_id'] = $logoId;
-        }
-
-        /* -------------------------------------------
-           PROFILE PHOTO UPLOAD
-        ------------------------------------------- */
-        if ($profileImg && $profileImg->isValid() && !$profileImg->hasMoved()) {
-            $validationRuleProfile = [
-                'vendorProfilePhoto' => [
-                    'rules' => 'is_image[vendorProfilePhoto]|mime_in[vendorProfilePhoto,image/jpg,image/jpeg,image/png]|max_size[vendorProfilePhoto,10240]',
-                    'errors' => [
-                        'is_image' => 'Profile photo must be an image',
-                        'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
-                        'max_size' => 'Profile photo size should not exceed 10MB',
-                    ],
-                ],
-            ];
-
-            if (!$this->validate($validationRuleProfile)) {
-                return $this->response->setJSON([
-                    'status' => 'error',
-                    'message' => implode('<br>', $this->validator->getErrors())
-                ]);
-            }
-
-            
-            $newProfileName = $profileImg->getRandomName();
-            $profileImg->move(FCPATH . 'uploads/vendor/logo', $newProfileName);
-            $filePath = 'uploads/vendor/logo/' . $newProfileName;
-
-            
-            $oldProfile = $this->StoreLogo->where('vendor_id', $userData['id'])->first();
-
-            if ($oldProfile) {
-                
-                if (!empty($oldProfile['profile_path']) && file_exists(FCPATH . $oldProfile['profile_path'])) {
-                    unlink(FCPATH . $oldProfile['profile_path']);
-                }
-
-                
-                $this->StoreLogo->update($oldProfile['id'], [
-                    'profile_path' => $filePath
-                ]);
-                $logoId = $oldProfile['id'];
-            } else {
-                
-                $logoId = $this->StoreLogo->insert([
-                    'vendor_id' => $userData['id'],
-                    'profile_path' => $filePath,
-                    'created_at' => date('Y-m-d H:i:s')
-                ], true); 
-            }
-
-            // Update vendor table
-            $updateData['profile_img_id'] = $logoId;
-
-        }
-
-        /* -------------------------------------------
-           FINAL UPDATE
-        ------------------------------------------- */
-        $update = $this->UserModel->update($userData['id'], $updateData);
-
-        return $this->response->setJSON([
-            'status' => $update ? 'success' : 'error',
-            'message' => $update ? 'Profile updated successfully!' : 'Profile not updated. Try again later.'
-        ]);
-    }
-
 
     // forgot password
 
-    public function forgotPassword(){
+    public function forgotPassword()
+    {
         $emailAddr = $this->request->getPost('email');
-        $user=$this->UserModel->where('email',$emailAddr)->first();
-        if(!$user){
+        $user = $this->UserModel->where('email', $emailAddr)->first();
+        if (!$user) {
             return $this->response->setJSON([
-                'status'=>'error',
-                'message'=>'Email not registered please register'
+                'status' => 'error',
+                'message' => 'Email not registered please register'
             ]);
         }
         // Generate verification code
         $verificationCode = random_int(100000, 999999);
 
-        $data=[
-            'email'=>$emailAddr,
+        $data = [
+            'email' => $emailAddr,
             'otp' => $verificationCode,
             'expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
         ];
 
-        $email_check=$this->PasswordReset->where('email',$emailAddr)->first();
-        if(!$email_check){
+        $email_check = $this->PasswordReset->where('email', $emailAddr)->first();
+        if (!$email_check) {
             $insertId = $this->PasswordReset->insert($data);
-        }
-        else{
-            $insertId = $this->PasswordReset->update($email_check['id'],$data);
+        } else {
+            $insertId = $this->PasswordReset->update($email_check['id'], $data);
         }
 
         if (!$insertId) {
@@ -627,17 +439,18 @@ class User extends BaseController
             ]);
 
         }
-        
+
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Email Sent.',
-            'redirect'=>site_url('vendor/reset-verify?email=' . urlencode($emailAddr))
+            'redirect' => site_url('vendor/reset-verify?email=' . urlencode($emailAddr))
         ]);
 
     }
     // forgot password code verify
 
-    public function forgotCodeVerify(){
+    public function forgotCodeVerify()
+    {
         $code = $this->request->getPost('code');
         $email = $this->request->getPost('email');
 
@@ -674,14 +487,15 @@ class User extends BaseController
             'status' => 'verified'
         ]);
 
-        
+
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Verification successful',
-            'redirect' => site_url('vendor/create-new-password?email='.urlencode($user['email']))
+            'redirect' => site_url('vendor/create-new-password?email=' . urlencode($user['email']))
         ]);
     }
-    public function forgotCodeVerifyResend(){
+    public function forgotCodeVerifyResend()
+    {
         $emailAddr = $this->request->getPost('email');
         $session = session();
 
@@ -743,7 +557,8 @@ class User extends BaseController
         ]);
     }
     // New Password
-    public function newPassword(){
+    public function newPassword()
+    {
         $password = $this->request->getPost('password');
         $email = $this->request->getPost('email');
 
@@ -760,20 +575,20 @@ class User extends BaseController
                 'message' => 'Email not found.'
             ]);
         }
-        $insertId=$this->UserModel->update($user['id'],[
-            'password'=>password_hash($password,PASSWORD_DEFAULT)
+        $insertId = $this->UserModel->update($user['id'], [
+            'password' => password_hash($password, PASSWORD_DEFAULT)
         ]);
-        if(!$insertId){
+        if (!$insertId) {
             return $this->response->setJSON([
-                'status'=>'error',
-                'message'=>'Password Not updated Please try again'
+                'status' => 'error',
+                'message' => 'Password Not updated Please try again'
             ]);
         }
 
         return $this->response->setJSON([
-            'status'=>'success',
-            'message'=>'Password Updated Successfully',
-            'redirect'=>site_url('vendor/login')
+            'status' => 'success',
+            'message' => 'Password Updated Successfully',
+            'redirect' => site_url('vendor/login')
         ]);
 
     }
