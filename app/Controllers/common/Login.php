@@ -3,7 +3,7 @@
 namespace App\Controllers\common;
 
 use App\Controllers\BaseController;
-use App\Models\admin\UserModel as AdminUserModel;
+use App\Models\Users as UserModel;
 // use CodeIgniter\API\ResponseTrait;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -12,12 +12,12 @@ class Login extends BaseController
 {
 
 
-    protected $adminUserModel;
-    protected $vendorUserModel;
+    protected $UserModel;
+    
 
     public function __construct()
     {
-        $this->adminUserModel = new AdminUserModel();
+        $this->UserModel = new UserModel();
         helper(['form', 'url', 'jwt']);
     }
 
@@ -27,7 +27,7 @@ class Login extends BaseController
         $password = $this->request->getPost('password');
 
         // 🔹 Check Admin
-        $admin = $this->adminUserModel->where('email', $email)->first();
+        $admin = $this->UserModel->where('email', $email)->first();
         if ($admin['role'] === 'admin') {
             if (!password_verify($password, $admin['password'])) {
                 return $this->response->setJSON([
@@ -55,7 +55,7 @@ class Login extends BaseController
         }
 
         // 🔹 Check Vendor
-        $vendor = $this->adminUserModel->where('email', $email)->first();
+        $vendor = $this->UserModel->where('email', $email)->first();
         if ($vendor['role'] === 'vendor') {
             if (!password_verify($password, $vendor['password'])) {
                 return $this->response->setJSON([

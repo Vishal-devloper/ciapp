@@ -1,21 +1,21 @@
 <?php
 namespace App\Controllers\admin;
 use App\Controllers\BaseController;
-use App\Models\admin\UserModel;
-use App\Models\admin\UserVerifyModel;
-use App\Models\admin\PasswordReset;
+use App\Models\Users as UserModel;
+use App\Models\PendingUsers;
+use App\Models\PasswordReset;
 
 class User extends BaseController
 {
     protected $UserModel;
-    protected $UserVerifyModel;
+    protected $PendingUsers;
     protected $PasswordReset;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
         $this->PasswordReset = new PasswordReset();
-        $this->UserVerifyModel = new UserVerifyModel();
+        $this->PendingUsers = new PendingUsers();
         helper(['form', 'url']);
     }
 
@@ -31,7 +31,7 @@ class User extends BaseController
                     'message' => 'Email already registered. Please log in.'
                 ]);
             }
-            $currentUser = $this->UserVerifyModel->where('email', $emailAddr)->first();
+            $currentUser = $this->PendingUsers->where('email', $emailAddr)->first();
             if ($currentUser) {
 
                 // Generate verification code
@@ -47,7 +47,7 @@ class User extends BaseController
                     'created_at' => date('Y-m-d H:i:s')
                 ];
 
-                $insertId = $this->UserVerifyModel->update($currentUser['id'], $insertData);
+                $insertId = $this->PendingUsers->update($currentUser['id'], $insertData);
 
                 if (!$insertId) {
                     return $this->response->setJSON([
@@ -97,7 +97,7 @@ class User extends BaseController
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
-            $insertId = $this->UserVerifyModel->insert($insertData);
+            $insertId = $this->PendingUsers->insert($insertData);
 
             if (!$insertId) {
                 return $this->response->setJSON([
@@ -154,7 +154,7 @@ class User extends BaseController
                 'message' => 'Invalid request. Email or code missing.'
             ]);
         }
-        $user = $this->UserVerifyModel->where('email', $email)->first();
+        $user = $this->PendingUsers->where('email', $email)->first();
         if (!$user) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -175,7 +175,7 @@ class User extends BaseController
                 'message' => 'Wrong verification code.'
             ]);
         }
-        $this->UserVerifyModel->update($user['id'], [
+        $this->PendingUsers->update($user['id'], [
             'verification_code' => null,
             'code_expires_at' => null,
             'status' => 'verified'
@@ -211,7 +211,7 @@ class User extends BaseController
                 'message' => 'You have reached the maximum resend limit (4 times).'
             ]);
         }
-        $user = $this->UserVerifyModel->where('email', $emailAddr)->first();
+        $user = $this->PendingUsers->where('email', $emailAddr)->first();
         if (!$user) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -223,7 +223,7 @@ class User extends BaseController
 
 
 
-        $insertId = $this->UserVerifyModel->update($user['id'], [
+        $insertId = $this->PendingUsers->update($user['id'], [
             'verification_code' => $verificationCode,
             'code_expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
         ]);

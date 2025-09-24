@@ -2,23 +2,23 @@
 namespace App\Controllers\vendor;
 
 use App\Controllers\BaseController;
-use App\Models\vendor\UserModel;
-use App\Models\vendor\UserVerifyModel;
-use App\Models\vendor\ProfileImg;
-use App\Models\vendor\PasswordReset;
+use App\Models\Users as UserModel;
+use App\Models\PendingUsers;
+use App\Models\Images;
+use App\Models\PasswordReset;
 
 class User extends BaseController
 {
     protected $UserModel;
-    protected $UserVerifyModel;
-    protected $ProfileImg;
+    protected $PendingUsers;
+    protected $Images;
     protected $PasswordReset;
 
     public function __construct()
     {
         $this->UserModel = new UserModel();
-        $this->UserVerifyModel = new UserVerifyModel();
-        $this->ProfileImg = new ProfileImg();
+        $this->PendingUsers = new PendingUsers();
+        $this->Images = new Images();
         $this->PasswordReset = new PasswordReset();
         helper(['form', 'url']);
     }
@@ -35,7 +35,7 @@ class User extends BaseController
                     'message' => 'Email already registered. Please log in.'
                 ]);
             }
-            $currentUser = $this->UserVerifyModel->where('email', $emailAddr)->first();
+            $currentUser = $this->PendingUsers->where('email', $emailAddr)->first();
             if ($currentUser) {
 
                 // Generate verification code
@@ -53,7 +53,7 @@ class User extends BaseController
                     'created_at' => date('Y-m-d H:i:s')
                 ];
 
-                $insertId = $this->UserVerifyModel->update($currentUser['id'], $insertData);
+                $insertId = $this->PendingUsers->update($currentUser['id'], $insertData);
 
                 if (!$insertId) {
                     return $this->response->setJSON([
@@ -105,7 +105,7 @@ class User extends BaseController
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
-            $insertId = $this->UserVerifyModel->insert($insertData);
+            $insertId = $this->PendingUsers->insert($insertData);
 
             if (!$insertId) {
                 return $this->response->setJSON([
@@ -162,7 +162,7 @@ class User extends BaseController
                 'message' => 'Invalid request. Email or code missing.'
             ]);
         }
-        $user = $this->UserVerifyModel->where('email', $email)->first();
+        $user = $this->PendingUsers->where('email', $email)->first();
         if (!$user) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -183,7 +183,7 @@ class User extends BaseController
                 'message' => 'Wrong verification code.'
             ]);
         }
-        $this->UserVerifyModel->update($user['id'], [
+        $this->PendingUsers->update($user['id'], [
             'verification_code' => null,
             'code_expires_at' => null,
             'status' => 'verified'
@@ -221,7 +221,7 @@ class User extends BaseController
                 'message' => 'You have reached the maximum resend limit (4 times).'
             ]);
         }
-        $user = $this->UserVerifyModel->where('email', $emailAddr)->first();
+        $user = $this->PendingUsers->where('email', $emailAddr)->first();
         if (!$user) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -233,7 +233,7 @@ class User extends BaseController
 
 
 
-        $insertId = $this->UserVerifyModel->update($user['id'], [
+        $insertId = $this->PendingUsers->update($user['id'], [
             'verification_code' => $verificationCode,
             'code_expires_at' => date('Y-m-d H:i:s', strtotime('+15 minutes'))
         ]);
@@ -289,8 +289,8 @@ class User extends BaseController
 
 
         if (empty($password) && empty($newPassword)) {
-            $newPassword="";
-            return $this->updateProfileAll($userData,$newPassword);
+
+            return $this->updateProfileAll($userData, '');
         }
 
 
@@ -306,13 +306,13 @@ class User extends BaseController
 
     }
 
-    private function handleImageUpload($file, $column, $userId, $imageId)
+    private function handleImageUpload($file, $column, $userId, $imageId, $inputName)
     {
         if ($file && $file->isValid() && !$file->hasMoved()) {
 
             $validationRule = [
-                $file->getName(true) => [
-                    'rules' => "is_image[{$file->getName(true)}]|mime_in[{$file->getName(true)},image/jpg,image/jpeg,image/png]|max_size[{$file->getName(true)},10240]",
+                $inputName => [
+                    'rules' => "is_image[$inputName]|mime_in[$inputName,image/jpg,image/jpeg,image/png]|max_size[$inputName,10240]",
                     'errors' => [
                         'is_image' => ucfirst($column) . ' must be an image',
                         'mime_in' => 'Only JPG, JPEG, PNG files are allowed',
@@ -332,17 +332,23 @@ class User extends BaseController
             $file->move(FCPATH . 'uploads/profile', $newName);
             $filePath = 'uploads/profile/' . $newName;
 
-            $oldImage = $this->ProfileImg->where('id', $imageId)->first();
+            $oldImage = $this->Images->where('user_id', $userId)->first();
 
             if ($oldImage) {
-                // Delete old file if exists
                 if (!empty($oldImage[$column]) && file_exists(FCPATH . $oldImage[$column])) {
-                    unlink(FCPATH . $oldImage[$column]);
+                    try {
+                        unlink(FCPATH . $oldImage[$column]);
+                    } catch (\Throwable $e) {
+                        log_message('error', 'File delete failed: ' . $e->getMessage());
+                    }
                 }
-                $this->ProfileImg->update($oldImage['id'], [$column => $filePath]);
+                $this->Images->update($oldImage['id'], [
+                    $column => $filePath,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
                 return ['status' => 'success', 'id' => $oldImage['id'], 'path' => $filePath];
             } else {
-                $id = $this->ProfileImg->insert([
+                $id = $this->Images->insert([
                     'user_id' => $userId,
                     $column => $filePath,
                     'created_at' => date('Y-m-d H:i:s')
@@ -369,9 +375,21 @@ class User extends BaseController
         }
 
         // Handle logo and profile photo
-        $logoResult = $this->handleImageUpload($this->request->getFile('vendorFile'), 'logo_path', $userData['id'], $userData['image_id']);
-        $profileResult = $this->handleImageUpload($this->request->getFile('vendorProfilePhoto'), 'profile_path', $userData['id'], $userData['image_id']);
+        $logoResult = $this->handleImageUpload(
+            $this->request->getFile('vendorFile'),
+            'logo_path',
+            $userData['id'],
+            $userData['image_id'],
+            'vendorFile' // ✅ pass input field name
+        );
 
+        $profileResult = $this->handleImageUpload(
+            $this->request->getFile('vendorProfilePhoto'),
+            'profile_path',
+            $userData['id'],
+            $userData['image_id'],
+            'vendorProfilePhoto' // ✅ pass input field name
+        );
         if ($logoResult)
             $updateData['image_id'] = $logoResult['id'];
         if ($profileResult)

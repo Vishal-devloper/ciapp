@@ -2,7 +2,7 @@
 namespace App\Controllers\admin;
 
 use App\Controllers\BaseController;
-use App\Models\admin\UserModel;
+use App\Models\Users as UserModel;
 
 class Vendor extends BaseController
 {

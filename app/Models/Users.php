@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\vendor;
+namespace App\Models;
 
 use CodeIgniter\Model;
 
