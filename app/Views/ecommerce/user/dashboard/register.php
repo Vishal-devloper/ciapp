@@ -45,18 +45,22 @@
                     <div class="axil-signin-form">
                         <h3 class="title">I'm New Here</h3>
                         <p class="b2 mb--55">Enter your detail below</p>
-                        <form class="singin-form">
+                        <form class="singin-form" id="registerForm">
                             <div class="form-group">
                                 <label>User Name</label>
-                                <input type="text" class="form-control" name="username" value="anniemario">
+                                <input type="text" class="form-control" name="name" placeholder="anniemario">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email" value="annie@example.com">
+                                <input type="email" class="form-control" name="email" placeholder="annie@example.com">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="password" value="123456789">
+                                <input type="password" class="form-control signupPassword" name="password" placeholder="123456789">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" class="form-control signupConfirm" name="password" placeholder="123456789">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
@@ -67,7 +71,9 @@
             </div>
         </div>
     </div>
-
+    <script>
+        const ajaxRequestUrl="<?= base_url('user/User/ajaxRegister') ?>";
+    </script>
     <?= view('ecommerce/user/common/foot_script') ?>
 
 </body>

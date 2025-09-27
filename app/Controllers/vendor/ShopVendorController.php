@@ -9,7 +9,7 @@ class ShopVendorController extends BaseController
 {
     protected $UserModel;
     protected $Images;
-
+    protected $data=[];
 
     public function __construct()
     {
@@ -42,35 +42,42 @@ class ShopVendorController extends BaseController
     {
         return view('ecommerce/vendor/user/newPassword');
     }
+    
+    public function profileImg(){
+        $session=session();
+        $this->data['user']=$this->UserModel->find($session->get('vendor_id'));
+        $Images=$this->data['user']['image_id'] ?? null;
+        if($Images){
+            $this->data['profileImage']=$this->Images->find($Images);
+        }
+        else{
+            $this->data['profileImage']=['profile_path'=>'vendor/plugins/images/users/genu.jpg'];
+        }
+    }
     public function dashboard(): string
     {   
-        
-        return view('ecommerce/vendor/dashboard/dashboard');
+        $this->profileImg();
+        return view('ecommerce/vendor/dashboard/dashboard',$this->data);
     }
+    
     public function profile()
     {   
-        $session=session();
-        $data['user']=$this->UserModel->find($session->get('vendor_id'));
-        $logoID=$data['user']['store_logo_id'] ?? null;
+        $this->profileImg();
+        $logoID=$this->data['user']['image_id'] ?? null;
         if($logoID){
-            $data['logoImage']=$this->Images->find($logoID);
+            $this->data['logoImage']=$this->Images->find($logoID);
         }
         else{
-            $data['logoImage']=['logo_path'=>'vendor/plugins/images/users/default_logo.jpg'];
-        }
-        $Images=$data['user']['profile_img_id'] ?? null;
-        if($Images){
-            $data['profileImage']=$this->Images->find($Images);
-        }
-        else{
-            $data['profileImage']=['profile_path'=>'vendor/plugins/images/users/genu.jpg'];
+            $this->data['logoImage']=['logo_path'=>'vendor/plugins/images/users/default_logo.jpg'];
         }
         
-        return view('ecommerce/vendor/dashboard/profile',$data);
+        
+        return view('ecommerce/vendor/dashboard/profile',$this->data);
     }
     public function map_google(): string
     {   
-        return view('ecommerce/vendor/dashboard/map_google');
+        $this->profileImg();
+        return view('ecommerce/vendor/dashboard/map_google',$this->data);
     }
     public function error(): string
     {   
@@ -78,15 +85,17 @@ class ShopVendorController extends BaseController
     }
     public function basic_table(): string
     {   
-        return view('ecommerce/vendor/dashboard/basic_table');
+        $this->profileImg();
+        return view('ecommerce/vendor/dashboard/basic_table',$this->data);
     }
     public function fontawesome(): string
     {   
-        return view('ecommerce/vendor/dashboard/fontawesome');
+        $this->profileImg();
+        return view('ecommerce/vendor/dashboard/fontawesome',$this->data);
     }
     public function blank(): string
-    {   
-        return view('ecommerce/vendor/dashboard/blank');
+    {   $this->profileImg();
+        return view('ecommerce/vendor/dashboard/blank',$this->data);
     }
 
     

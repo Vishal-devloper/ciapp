@@ -30,75 +30,7 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="<?= base_url('vendor/dashboard') ?>">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <img src="<?= base_url('public/vendor/plugins/images/logo-icon.png') ?>" alt="homepage" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="<?= base_url('public/vendor/plugins/images/logo-text.png') ?>" alt="homepage" />
-                        </span>
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <ul class="navbar-nav d-none d-md-block d-lg-none">
-                        <li class="nav-item">
-                            <a class="nav-toggler nav-link waves-effect waves-light text-white"
-                                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav ms-auto d-flex align-items-center">
-
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class=" in">
-                            <form role="search" class="app-search d-none d-md-block me-3">
-                                <input type="text" placeholder="Search..." class="form-control mt-0">
-                                <a href="" class="active">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li>
-                             <a class="profile-pic" href="<?= base_url('vendor/profile') ?>">
-                                <img src="<?= base_url('public/'.$profileImage['profile_path']); ?>" alt="user-img" width="36px" height="36px"
-                                    class="img-circle"> </a>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <?= view('ecommerce/vendor/common/header') ?>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
@@ -152,7 +84,7 @@
                             <div class="user-bg"> 
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="<?= base_url('public/'.$profileImage['profile_path']) ?>"
+                                        <a href="javascript:void(0)"><img src="<?= base_url($profileImage['profile_path']) ?>"
                                                 class="thumb-lg img-circle" alt="img"></a>
                                         <h4 class="text-white mt-2"><?= esc($user['name']) ?></h4>
                                         <h5 class="text-white mt-2"><?= esc($user['email']) ?></h5>
@@ -234,7 +166,7 @@
                                                     class="form-control p-0">
                                                 </div>
                                                 <div class="col-md-6 text-center logo_image p-0">
-                                                        <img src="<?= base_url('public/' . $logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
+                                                        <img src="<?= base_url($logoImage['logo_path']) ?>"  height="100px" width="100px" class="img-fluid rounded-circle border border-2">
                                                 </div>
                                             </div>
                                         </div>

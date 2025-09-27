@@ -19,3 +19,4 @@
 
     <!-- Main JS -->
     <script src="<?= base_url('public/user/js/main.js') ?>"></script>
+    <script src="<?= base_url('public/user/js/validation.js') ?>"></script>
